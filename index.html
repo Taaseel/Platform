@@ -1900,15 +1900,15 @@
                 <!-- Frame: dark rounded square -->
                 <rect x="3" y="3" width="94" height="94" rx="22" fill="#30261D"/>
 
-                <!-- B: top D-shape (flat LEFT edge, curved RIGHT) -->
-                <path d="M14 30 L33 30 A7 7 0 0 1 33 44 L14 44 Z" fill="#BD8F3F"/>
-                <!-- B: bottom D-shape (flat LEFT edge, curved RIGHT) -->
-                <path d="M14 56 L33 56 A7 7 0 0 1 33 70 L14 70 Z" fill="#BD8F3F"/>
+                <!-- B: top D-shape (centered) -->
+                <path d="M9 30 L28 30 A7 7 0 0 1 28 44 L9 44 Z" fill="#BD8F3F"/>
+                <!-- B: bottom D-shape (centered) -->
+                <path d="M9 56 L28 56 A7 7 0 0 1 28 70 L9 70 Z" fill="#BD8F3F"/>
 
-                <!-- W: 3 vertical pills - tall bars aligned with B edges -->
-                <rect x="50" y="30" width="10" height="40" rx="5" fill="#BD8F3F"/>
-                <rect x="66" y="44" width="10" height="26" rx="5" fill="#BD8F3F"/>
-                <rect x="82" y="30" width="10" height="40" rx="5" fill="#BD8F3F"/>
+                <!-- W: 3 vertical pills (centered) -->
+                <rect x="41" y="30" width="14" height="40" rx="7" fill="#BD8F3F"/>
+                <rect x="59" y="44" width="14" height="26" rx="7" fill="#BD8F3F"/>
+                <rect x="77" y="30" width="14" height="40" rx="7" fill="#BD8F3F"/>
             </svg>
 
             <div class="nav-logo-divider"></div>
@@ -2348,14 +2348,14 @@
                 <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="2" width="96" height="96" rx="22"
                           fill="#BD8F3F" stroke="#30261D" stroke-width="4"/>
-                    <!-- B: top D-shape (flat left, curved right) -->
-                    <path d="M14 30 L33 30 A7 7 0 0 1 33 44 L14 44 Z" fill="#30261D"/>
-                    <!-- B: bottom D-shape (flat left, curved right) -->
-                    <path d="M14 56 L33 56 A7 7 0 0 1 33 70 L14 70 Z" fill="#30261D"/>
-                    <!-- W: 3 vertical pills aligned with B -->
-                    <rect x="50" y="30" width="10" height="40" rx="5" fill="#30261D"/>
-                    <rect x="66" y="44" width="10" height="26" rx="5" fill="#30261D"/>
-                    <rect x="82" y="30" width="10" height="40" rx="5" fill="#30261D"/>
+                    <!-- B: top D-shape (centered) -->
+                    <path d="M9 30 L28 30 A7 7 0 0 1 28 44 L9 44 Z" fill="#30261D"/>
+                    <!-- B: bottom D-shape (centered) -->
+                    <path d="M9 56 L28 56 A7 7 0 0 1 28 70 L9 70 Z" fill="#30261D"/>
+                    <!-- W: 3 vertical pills (centered) -->
+                    <rect x="41" y="30" width="14" height="40" rx="7" fill="#30261D"/>
+                    <rect x="59" y="44" width="14" height="26" rx="7" fill="#30261D"/>
+                    <rect x="77" y="30" width="14" height="40" rx="7" fill="#30261D"/>
                 </svg>
                 <div>
                     <div style="font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#fff;letter-spacing:1.5px;line-height:1">BUILD WISE</div>
@@ -2498,20 +2498,23 @@
      MODAL: EDIT USER PROFILE
 ═══════════════════════════════════════════ -->
 <div id="edit-profile-modal" class="modal-overlay hidden" style="z-index:202">
-    <div class="modal-box" style="max-width:480px;padding:0;border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;padding:24px 28px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--bw-gold)">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(189,143,63,0.18);display:flex;align-items:center;justify-content:center;color:var(--bw-gold-lt);border:1px solid var(--bw-gold)">
+    <div class="modal-box" style="max-width:480px;width:100%;max-height:92vh;padding:0;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <!-- Header (fixed) -->
+        <div style="background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--bw-gold);flex-shrink:0">
+            <div style="width:44px;height:44px;border-radius:12px;background:rgba(189,143,63,0.18);display:flex;align-items:center;justify-content:center;color:var(--bw-gold-lt);border:1px solid var(--bw-gold);flex-shrink:0">
                 <i data-lucide="user-cog" style="width:20px;height:20px"></i>
             </div>
-            <div style="flex:1">
+            <div style="flex:1;min-width:0">
                 <div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--bw-gold-lt);text-transform:uppercase">تعديل الحساب</div>
-                <div style="font-size:18px;font-weight:900;color:#fff">تحديث بياناتك الشخصية</div>
+                <div style="font-size:17px;font-weight:900;color:#fff">تحديث بياناتك الشخصية</div>
             </div>
-            <button onclick="closeEditProfile()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff">
+            <button onclick="closeEditProfile()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0">
                 <i data-lucide="x" style="width:14px;height:14px"></i>
             </button>
         </div>
-        <div style="padding:24px 28px">
+
+        <!-- Scrollable body -->
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:20px 24px">
             <div style="margin-bottom:14px">
                 <label class="form-label">الاسم الكامل</label>
                 <input id="ep-name" type="text" class="form-input" placeholder="الاسم الأول والأخير" />
@@ -2552,12 +2555,66 @@
 
             <div id="ep-msg" style="display:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;margin-bottom:12px"></div>
 
-            <div style="display:flex;gap:8px">
-                <button onclick="saveEditProfile()" class="btn-submit" style="flex:1;background:var(--bw-clay)">
-                    <i data-lucide="check" style="width:15px;height:15px"></i>
-                    حفظ التغييرات
+            <!-- Danger zone -->
+            <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:14px;margin-top:18px">
+                <div style="font-size:12px;font-weight:900;color:#991B1B;margin-bottom:6px;display:flex;align-items:center;gap:6px">
+                    <i data-lucide="alert-triangle" style="width:14px;height:14px"></i>
+                    منطقة الخطر
+                </div>
+                <p style="font-size:11px;color:#7F1D1D;font-weight:700;line-height:1.6;margin-bottom:10px">حذف الحساب نهائي ولا يمكن التراجع عنه. ستفقد كل بيانات اهتمامك والتحليلات المحفوظة.</p>
+                <button onclick="openDeleteAccount()" style="font-family:Tajawal;font-size:12px;font-weight:900;color:#fff;background:linear-gradient(135deg, #DC2626, #B91C1C);border:none;border-radius:8px;padding:9px 16px;cursor:pointer;display:flex;align-items:center;gap:6px">
+                    <i data-lucide="trash-2" style="width:13px;height:13px"></i>
+                    حذف حسابي نهائياً
                 </button>
-                <button onclick="closeEditProfile()" style="font-family:Tajawal;font-size:13px;font-weight:800;color:var(--slate);background:var(--bw-sand-2);border:none;border-radius:10px;padding:0 20px;cursor:pointer">إلغاء</button>
+            </div>
+        </div>
+
+        <!-- Footer (fixed) -->
+        <div style="background:#fff;border-top:1px solid rgba(48,38,29,0.08);padding:14px 24px;display:flex;gap:8px;flex-shrink:0">
+            <button onclick="saveEditProfile()" class="btn-submit" style="flex:1;background:var(--bw-clay);margin:0">
+                <i data-lucide="check" style="width:15px;height:15px"></i>
+                حفظ التغييرات
+            </button>
+            <button onclick="closeEditProfile()" style="font-family:Tajawal;font-size:13px;font-weight:800;color:var(--slate);background:var(--bw-sand-2);border:none;border-radius:10px;padding:0 20px;cursor:pointer">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     MODAL: DELETE ACCOUNT CONFIRMATION
+═══════════════════════════════════════════ -->
+<div id="delete-account-modal" class="modal-overlay hidden" style="z-index:203">
+    <div class="modal-box" style="max-width:440px;padding:0;border-radius:18px;overflow:hidden;text-align:center">
+        <div style="background:linear-gradient(135deg, #FEE2E2, #FECACA);padding:32px 24px 24px">
+            <div style="width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 24px rgba(220,38,38,0.15);border:2px solid #FCA5A5">
+                <i data-lucide="alert-triangle" style="width:32px;height:32px;color:#DC2626"></i>
+            </div>
+            <h3 style="font-size:20px;font-weight:900;color:#7F1D1D;margin-bottom:6px">حذف الحساب نهائياً</h3>
+            <p style="font-size:13px;color:#991B1B;font-weight:700;line-height:1.6">هذه العملية لا يمكن التراجع عنها. سيتم حذف جميع بياناتك بشكل نهائي.</p>
+        </div>
+        <div style="padding:20px 24px;background:#fff;text-align:right">
+            <div style="background:#FEF2F2;border-radius:10px;padding:12px;margin-bottom:14px">
+                <div style="font-size:12px;color:#7F1D1D;font-weight:800;margin-bottom:8px">سيتم حذف:</div>
+                <ul style="margin:0;padding-right:18px;font-size:11px;color:#991B1B;font-weight:700;line-height:1.9">
+                    <li>بيانات الحساب الشخصي (الاسم، الجوال، البريد)</li>
+                    <li>بيانات اهتمامك المسجَّلة</li>
+                    <li>جميع التحليلات المحفوظة</li>
+                </ul>
+            </div>
+            <div style="margin-bottom:14px">
+                <label class="form-label" style="color:#7F1D1D">لتأكيد الحذف، اكتب كلمة <strong>حذف</strong> في الحقل التالي</label>
+                <input id="del-confirm-text" type="text" class="form-input" placeholder="اكتب: حذف" style="border-color:#FCA5A5" oninput="_checkDeleteConfirm()" />
+            </div>
+            <div id="del-error" style="display:none;background:#FEF2F2;border:1px solid #FCA5A5;color:#7F1D1D;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:12px"></div>
+            <div style="display:flex;gap:8px">
+                <button id="del-confirm-btn" onclick="confirmDeleteAccount()" disabled style="flex:1;font-family:Tajawal;font-size:14px;font-weight:900;color:#fff;background:#9CA3AF;border:none;border-radius:10px;padding:12px;cursor:not-allowed;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s">
+                    <i data-lucide="trash-2" style="width:15px;height:15px"></i>
+                    احذف حسابي نهائياً
+                </button>
+                <button onclick="cancelDeleteAccount()" style="flex:1;font-family:Tajawal;font-size:14px;font-weight:800;color:var(--bw-dark);background:var(--bw-sand-2);border:2px solid rgba(48,38,29,0.1);border-radius:10px;padding:12px;cursor:pointer">
+                    إلغاء
+                </button>
             </div>
         </div>
     </div>
@@ -2688,13 +2745,14 @@
                         </div>
                     </div>
                     <div style="overflow-x:auto">
-                        <table class="pl-table" style="font-size:12px;min-width:900px" id="admin-customers-table">
+                        <table class="pl-table" style="font-size:12px;min-width:1000px" id="admin-customers-table">
                             <thead>
                                 <tr>
                                     <th style="text-align:center">#</th>
-                                    <th style="text-align:center">الجوال</th>
                                     <th style="text-align:right">المنشأة</th>
                                     <th style="text-align:right">النشاط</th>
+                                    <th style="text-align:right">اسم العميل</th>
+                                    <th style="text-align:center">الجوال</th>
                                     <th style="text-align:center">المدينة</th>
                                     <th style="text-align:center">المبيعات</th>
                                     <th style="text-align:center">نوع العقار</th>
@@ -4820,6 +4878,71 @@
         }, 1200);
     }
 
+    // ─── DELETE ACCOUNT ───
+    function openDeleteAccount() {
+        // Reset confirmation state
+        const inp = document.getElementById('del-confirm-text');
+        const btn = document.getElementById('del-confirm-btn');
+        const err = document.getElementById('del-error');
+        if (inp) inp.value = '';
+        if (err) err.style.display = 'none';
+        if (btn) {
+            btn.disabled = true;
+            btn.style.background = '#9CA3AF';
+            btn.style.cursor = 'not-allowed';
+        }
+        document.getElementById('delete-account-modal').classList.remove('hidden');
+        lucide.createIcons();
+    }
+    function cancelDeleteAccount() {
+        document.getElementById('delete-account-modal').classList.add('hidden');
+    }
+    function _checkDeleteConfirm() {
+        const inp = document.getElementById('del-confirm-text');
+        const btn = document.getElementById('del-confirm-btn');
+        if (!inp || !btn) return;
+        const isValid = inp.value.trim() === 'حذف';
+        btn.disabled = !isValid;
+        if (isValid) {
+            btn.style.background = 'linear-gradient(135deg, #DC2626, #B91C1C)';
+            btn.style.cursor = 'pointer';
+            btn.style.boxShadow = '0 4px 12px rgba(220,38,38,0.25)';
+        } else {
+            btn.style.background = '#9CA3AF';
+            btn.style.cursor = 'not-allowed';
+            btn.style.boxShadow = 'none';
+        }
+    }
+    function confirmDeleteAccount() {
+        const inp = document.getElementById('del-confirm-text');
+        const err = document.getElementById('del-error');
+        if (!inp || inp.value.trim() !== 'حذف') {
+            if (err) {
+                err.style.display = 'block';
+                err.textContent = '⚠️ يجب كتابة كلمة "حذف" للتأكيد';
+            }
+            return;
+        }
+        const user = getCurrentUser();
+        if (!user) return;
+        // Remove user from all users
+        const users = getAllUsers().filter(u => u.id !== user.id);
+        saveAllUsers(users);
+        // Clear current session
+        setCurrentUser(null);
+        try { localStorage.removeItem('taaseelRegistered'); } catch(e) {}
+        try { localStorage.removeItem('taaseelUserContact'); } catch(e) {}
+        // Close all modals
+        document.getElementById('delete-account-modal').classList.add('hidden');
+        document.getElementById('edit-profile-modal').classList.add('hidden');
+        closeUserDashboard();
+        updateAuthUI();
+        // Show goodbye toast
+        showWelcomeToast('👋 تم حذف حسابك بنجاح. نأسف لرحيلك');
+        // Go to home
+        showView('home');
+    }
+
     // ─── ADMIN DASHBOARD ───
     function openAdminDashboard() {
         const users = getAllUsers();
@@ -4976,7 +5099,7 @@
         });
         const tb = document.getElementById('admin-customers-tbody');
         if (filtered.length === 0) {
-            tb.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:30px;color:var(--slate)">— لا يوجد عملاء مطابقون —</td></tr>';
+            tb.innerHTML = '<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--slate)">— لا يوجد عملاء مطابقون —</td></tr>';
             return;
         }
         tb.innerHTML = filtered.map((u, i) => {
@@ -4986,9 +5109,10 @@
             const analysisCount = (u.calc_analyses || []).length;
             return `<tr>
                 <td style="text-align:center;font-weight:900;color:var(--bw-clay)">${i+1}</td>
-                <td style="text-align:center;font-family:Poppins;font-weight:700;direction:ltr">+966 ${u.phone}</td>
                 <td style="text-align:right">${d.biz_name || '—'}</td>
                 <td style="text-align:right">${d.biz_type || '—'}</td>
+                <td style="text-align:right;font-weight:800;color:var(--bw-dark)">${u.full_name || '—'}</td>
+                <td style="text-align:center;font-family:Poppins;font-weight:700;direction:ltr">+966 ${u.phone}</td>
                 <td style="text-align:center">${d.city || '—'}</td>
                 <td style="text-align:center;font-family:Poppins;font-weight:700">${d.revenue || '—'}</td>
                 <td style="text-align:center">${d.prop_type || '—'}</td>
