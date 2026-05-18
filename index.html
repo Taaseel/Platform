@@ -684,6 +684,18 @@
             padding: 5px 12px; border-radius: 100px;
             letter-spacing: 0.5px;
         }
+        .prop-zoom-hint {
+            position: absolute; top: 16px; right: 16px;
+            background: rgba(255,255,255,0.95); color: var(--bw-clay);
+            font-size: 11px; font-weight: 900;
+            padding: 6px 12px; border-radius: 100px;
+            display: flex; align-items: center; gap: 5px;
+            opacity: 0; transform: translateY(-6px);
+            transition: opacity 0.3s, transform 0.3s;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .prop-card:hover .prop-zoom-hint { opacity: 1; transform: translateY(0); }
         .prop-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
         .prop-title { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; line-height: 1.4; }
         .prop-loc {
@@ -2417,6 +2429,123 @@
 <!-- ═══════════════════════════════════════════
      MODAL: USER DASHBOARD (My Account)
 ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     MODAL: PROPERTY DETAILS (Image Gallery + Full Info)
+═══════════════════════════════════════════ -->
+<div id="property-details-modal" class="modal-overlay hidden" style="z-index:201;padding:0">
+    <div class="modal-box" style="max-width:100%;width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;border-radius:0;padding:0;display:flex;flex-direction:column;overflow:hidden;background:var(--bw-sand)">
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;padding:18px 28px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--bw-gold);flex-shrink:0">
+            <div style="font-size:32px" id="pd-icon">🏢</div>
+            <div style="flex:1;min-width:0">
+                <div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--bw-gold-lt);text-transform:uppercase">تفاصيل المشروع</div>
+                <div style="font-size:18px;font-weight:900;color:#fff" id="pd-title">—</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px">
+                    <i data-lucide="map-pin" style="width:12px;height:12px"></i>
+                    <span id="pd-location">—</span>
+                </div>
+            </div>
+            <button onclick="closePropertyDetails()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:38px;height:38px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0">
+                <i data-lucide="x" style="width:16px;height:16px"></i>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div style="flex:1;min-height:0;overflow-y:auto">
+            <div style="max-width:1200px;margin:0 auto;padding:24px 28px">
+                <!-- Gallery -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px" id="pd-gallery-grid">
+                    <!-- Main image -->
+                    <div style="grid-row:span 2;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;background:#000;min-height:300px" onclick="pdShowImage(0)">
+                        <img id="pd-img-main" src="" style="width:100%;height:100%;object-fit:cover;display:block" alt="main"/>
+                        <div style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:800;backdrop-filter:blur(8px);display:flex;align-items:center;gap:5px">
+                            <i data-lucide="maximize-2" style="width:11px;height:11px"></i>
+                            تكبير
+                        </div>
+                    </div>
+                    <!-- Thumbnails -->
+                    <div id="pd-thumb-1" style="border-radius:14px;overflow:hidden;cursor:pointer;background:#000;min-height:145px" onclick="pdShowImage(1)">
+                        <img src="" style="width:100%;height:100%;object-fit:cover;display:block" alt="thumb1"/>
+                    </div>
+                    <div id="pd-thumb-2" style="border-radius:14px;overflow:hidden;cursor:pointer;background:#000;min-height:145px" onclick="pdShowImage(2)">
+                        <img src="" style="width:100%;height:100%;object-fit:cover;display:block" alt="thumb2"/>
+                    </div>
+                </div>
+
+                <!-- More thumbs row -->
+                <div id="pd-more-thumbs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px">
+                    <!-- Filled by JS -->
+                </div>
+
+                <!-- Info grid -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px">
+                    <!-- Left: Key Info Card -->
+                    <div style="background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(48,38,29,0.08)">
+                        <h3 style="font-size:15px;font-weight:900;color:var(--bw-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px">
+                            <i data-lucide="info" style="width:16px;height:16px;color:var(--bw-clay)"></i>
+                            المعلومات الأساسية
+                        </h3>
+                        <div id="pd-info-rows" style="display:flex;flex-direction:column;gap:10px"></div>
+                    </div>
+
+                    <!-- Right: Price highlight -->
+                    <div style="background:linear-gradient(135deg, #1F1812, #30261D);border-radius:16px;padding:24px;color:#fff;border:1px solid var(--bw-gold);display:flex;flex-direction:column;justify-content:space-between">
+                        <div>
+                            <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:var(--bw-gold-lt);text-transform:uppercase;margin-bottom:8px">القيمة الإجمالية</div>
+                            <div style="font-family:Poppins;font-size:36px;font-weight:900;color:var(--bw-gold-lt);line-height:1.2" id="pd-price">—</div>
+                            <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:20px">ريال سعودي</div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+                                <div style="background:rgba(189,143,63,0.12);border:1px solid rgba(189,143,63,0.3);border-radius:10px;padding:10px 14px">
+                                    <div style="font-size:10px;font-weight:800;color:var(--bw-gold-lt);text-transform:uppercase">المساحة</div>
+                                    <div style="font-family:Poppins;font-size:16px;font-weight:900;color:#fff;margin-top:2px" id="pd-area">—</div>
+                                </div>
+                                <div style="background:rgba(189,143,63,0.12);border:1px solid rgba(189,143,63,0.3);border-radius:10px;padding:10px 14px">
+                                    <div style="font-size:10px;font-weight:800;color:var(--bw-gold-lt);text-transform:uppercase" id="pd-rooms-label">الغرف</div>
+                                    <div style="font-family:Poppins;font-size:16px;font-weight:900;color:#fff;margin-top:2px" id="pd-rooms">—</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="pdOpenCalculator()" style="background:var(--bw-clay);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-family:Tajawal;font-size:14px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 24px rgba(140,59,25,0.3)">
+                            <i data-lucide="calculator" style="width:16px;height:16px"></i>
+                            احسب استقطاعك لهذا الأصل
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Description / Features -->
+                <div style="background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(48,38,29,0.08);margin-bottom:24px">
+                    <h3 style="font-size:15px;font-weight:900;color:var(--bw-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px">
+                        <i data-lucide="sparkles" style="width:16px;height:16px;color:var(--bw-clay)"></i>
+                        المزايا والخصائص
+                    </h3>
+                    <div id="pd-features" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     MODAL: IMAGE LIGHTBOX (Full-screen image view)
+═══════════════════════════════════════════ -->
+<div id="image-lightbox" class="modal-overlay hidden" style="z-index:210;padding:0;background:rgba(0,0,0,0.95)">
+    <button onclick="closeImageLightbox()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;z-index:5">
+        <i data-lucide="x" style="width:20px;height:20px"></i>
+    </button>
+    <button onclick="lightboxPrev()" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50%;width:50px;height:50px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;z-index:5">
+        <i data-lucide="chevron-left" style="width:24px;height:24px"></i>
+    </button>
+    <button onclick="lightboxNext()" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50%;width:50px;height:50px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;z-index:5">
+        <i data-lucide="chevron-right" style="width:24px;height:24px"></i>
+    </button>
+    <img id="lightbox-img" src="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px" alt="property"/>
+    <div id="lightbox-counter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.1);color:#fff;padding:8px 16px;border-radius:100px;font-family:Poppins;font-size:13px;font-weight:700">1 / 5</div>
+</div>
+
+
 <div id="user-dashboard-modal" class="modal-overlay hidden" style="padding:0">
     <div class="modal-box" style="max-width:100%;width:100%;height:100vh;max-height:100vh;border-radius:0;padding:0;display:flex;flex-direction:column;overflow:hidden;background:var(--bw-sand)">
         <!-- Header -->
@@ -4204,11 +4333,15 @@
         const catIcon = { 'شقة':'🏢','دوبلكس':'🏘','فيلا':'🏡','تاون-هاوس':'🏠','أرض':'🌍','فندقية':'🏨' };
         return `
         <div class="prop-card">
-            <div class="prop-img-wrap">
+            <div class="prop-img-wrap" onclick="openPropertyDetails(${prop.id})" style="cursor:pointer;position:relative" title="اضغط لعرض التفاصيل والصور">
                 <img src="${prop.image}" alt="${prop.title}" loading="lazy"/>
                 <div class="prop-img-overlay"></div>
                 <div class="prop-price">${prop.price} ر.س</div>
                 <div class="prop-badge">${catIcon[prop.category] || ''} ${prop.category}</div>
+                <div class="prop-zoom-hint">
+                    <i data-lucide="zoom-in" style="width:14px;height:14px"></i>
+                    <span>عرض التفاصيل</span>
+                </div>
             </div>
             <div class="prop-body">
                 <h3 class="prop-title">${prop.title}</h3>
@@ -4228,6 +4361,199 @@
             </div>
         </div>`;
     }
+
+    // ═══════════════════════════════════════════
+    // PROPERTY DETAILS MODAL (Image Gallery + Info)
+    // ═══════════════════════════════════════════
+
+    // Gallery image pools by category — multiple Unsplash images per category
+    const GALLERY_POOLS = {
+        'شقة': [
+            'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80',
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80',
+            'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80',
+            'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80',
+            'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80',
+        ],
+        'دوبلكس': [
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1200&q=80',
+        ],
+        'فيلا': [
+            'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80',
+            'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
+            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+        ],
+        'تاون-هاوس': [
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+            'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1200&q=80',
+            'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1200&q=80',
+            'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80',
+            'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
+        ],
+        'أرض': [
+            'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
+            'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&q=80',
+            'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&q=80',
+            'https://images.unsplash.com/photo-1486520299386-6d106b22014b?w=1200&q=80',
+        ],
+        'فندقية': [
+            'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80',
+            'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=80',
+            'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80',
+            'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80',
+            'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80',
+        ],
+    };
+
+    // Features per category
+    const FEATURES_POOL = {
+        'شقة':       ['🚗 موقف خاص', '🛗 مصعد', '🏊 مسبح', '🏋 صالة رياضية', '🛡 حراسة 24/7', '🌳 حديقة'],
+        'دوبلكس':    ['🚗 موقفان خاصان', '🏊 مسبح خاص', '🌳 حديقة خاصة', '🛡 أمن وحراسة', '☀ تشميس ممتاز', '🏠 إطلالة مفتوحة'],
+        'فيلا':      ['🚗 جراج 3 سيارات', '🏊 مسبح خاص', '🌳 حديقة واسعة', '🏠 مجلس مستقل', '🍽 مطبخ خارجي', '🛡 نظام أمن متكامل'],
+        'تاون-هاوس': ['🚗 موقفان خاصان', '🌳 حديقة جانبية', '🏊 مسبح مشترك', '🛡 مجمع آمن', '🏠 تشطيب فاخر', '☀ تهوية طبيعية'],
+        'أرض':       ['📐 مساحة كبيرة', '🛣 موقع استراتيجي', '⚡ بنية تحتية كاملة', '📋 صك إلكتروني', '🏗 جاهزة للبناء', '🌍 إطلالة مميزة'],
+        'فندقية':    ['🛏 خدمة الإدارة', '💰 دخل شهري ثابت', '🏨 خدمات فندقية', '📍 موقع سياحي', '🛡 أمن 24/7', '📈 استثمار آمن'],
+    };
+
+    function _propGallery(prop) {
+        // Build gallery: main image + 4 category-based images
+        const pool = GALLERY_POOLS[prop.category] || GALLERY_POOLS['شقة'];
+        const gallery = [prop.image];
+        for (const url of pool) {
+            if (gallery.length >= 5) break;
+            if (url !== prop.image) gallery.push(url);
+        }
+        while (gallery.length < 5) gallery.push(pool[gallery.length % pool.length]);
+        return gallery;
+    }
+
+    let _pdCurrentProp = null;
+    let _pdGallery = [];
+    let _pdLightboxIdx = 0;
+
+    function openPropertyDetails(propId) {
+        const prop = properties.find(p => p.id === propId);
+        if (!prop) return;
+        _pdCurrentProp = prop;
+        _pdGallery = _propGallery(prop);
+
+        const catIcons = { 'شقة':'🏢','دوبلكس':'🏘','فيلا':'🏡','تاون-هاوس':'🏠','أرض':'🌍','فندقية':'🏨' };
+        document.getElementById('pd-icon').textContent     = catIcons[prop.category] || '🏢';
+        document.getElementById('pd-title').textContent    = prop.title;
+        document.getElementById('pd-location').textContent = prop.location;
+        document.getElementById('pd-price').textContent    = prop.price;
+        document.getElementById('pd-area').textContent     = prop.area || '—';
+
+        // Rooms display (different for land)
+        const roomsEl = document.getElementById('pd-rooms');
+        const roomsLabel = document.getElementById('pd-rooms-label');
+        if (prop.category === 'أرض' || prop.rooms === '—' || !prop.rooms) {
+            roomsLabel.textContent = 'نوع';
+            roomsEl.textContent = prop.category;
+        } else {
+            roomsLabel.textContent = 'الغرف';
+            roomsEl.textContent = prop.rooms;
+        }
+
+        // Gallery images
+        document.querySelector('#pd-gallery-grid > div:nth-child(1) img').src = _pdGallery[0];
+        document.querySelector('#pd-thumb-1 img').src = _pdGallery[1];
+        document.querySelector('#pd-thumb-2 img').src = _pdGallery[2];
+
+        // More thumbs (rest of gallery)
+        const moreThumbs = document.getElementById('pd-more-thumbs');
+        moreThumbs.innerHTML = _pdGallery.slice(3).map((url, i) => `
+            <div style="border-radius:12px;overflow:hidden;cursor:pointer;background:#000;aspect-ratio:16/9;transition:transform 0.3s" onclick="pdShowImage(${i + 3})" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="${url}" style="width:100%;height:100%;object-fit:cover;display:block" alt="thumb${i + 3}"/>
+            </div>
+        `).join('');
+
+        // Info rows
+        const statusText = prop.status === 'ready' ? '🔑 جاهزة للتسليم' : '📐 بيع على الخارطة';
+        const statusColor = prop.status === 'ready' ? '#10B981' : '#F59E0B';
+        const infoRows = [
+            { icon: 'building-2', label: 'المطور العقاري', value: prop.developer || '—', color: 'var(--bw-clay)' },
+            { icon: 'tag', label: 'تصنيف المشروع', value: prop.category, color: 'var(--bw-dark)' },
+            { icon: 'package', label: 'حالة المشروع', value: statusText, color: statusColor },
+            { icon: 'map-pin', label: 'الموقع', value: prop.location, color: 'var(--bw-dark)' },
+            { icon: 'maximize', label: 'المساحة', value: prop.area, color: 'var(--bw-dark)' },
+        ];
+        if (prop.rooms && prop.rooms !== '—' && prop.category !== 'أرض') {
+            infoRows.push({ icon: 'bed', label: 'عدد الغرف', value: prop.rooms + ' غرف', color: 'var(--bw-dark)' });
+        }
+
+        document.getElementById('pd-info-rows').innerHTML = infoRows.map(r => `
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bw-sand-2);border-radius:10px">
+                <div style="width:34px;height:34px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;color:${r.color};flex-shrink:0;border:1px solid rgba(48,38,29,0.06)">
+                    <i data-lucide="${r.icon}" style="width:15px;height:15px"></i>
+                </div>
+                <div style="flex:1;min-width:0">
+                    <div style="font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase;letter-spacing:0.5px">${r.label}</div>
+                    <div style="font-size:13px;font-weight:800;color:${r.color};margin-top:2px;word-break:break-word">${r.value}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // Features
+        const features = FEATURES_POOL[prop.category] || FEATURES_POOL['شقة'];
+        document.getElementById('pd-features').innerHTML = features.map(f => `
+            <div style="background:var(--bw-sand-2);padding:12px 14px;border-radius:10px;font-size:13px;font-weight:800;color:var(--bw-dark);display:flex;align-items:center;gap:8px">
+                <span>${f}</span>
+            </div>
+        `).join('');
+
+        document.getElementById('property-details-modal').classList.remove('hidden');
+        lucide.createIcons();
+    }
+
+    function closePropertyDetails() {
+        document.getElementById('property-details-modal').classList.add('hidden');
+    }
+
+    function pdOpenCalculator() {
+        if (!_pdCurrentProp) return;
+        closePropertyDetails();
+        setTimeout(() => openCalculator(_pdCurrentProp.id), 200);
+    }
+
+    // ─── Image Lightbox (Full-screen image view) ───
+    function pdShowImage(idx) {
+        if (!_pdGallery || _pdGallery.length === 0) return;
+        _pdLightboxIdx = Math.max(0, Math.min(idx, _pdGallery.length - 1));
+        document.getElementById('lightbox-img').src = _pdGallery[_pdLightboxIdx];
+        document.getElementById('lightbox-counter').textContent = `${_pdLightboxIdx + 1} / ${_pdGallery.length}`;
+        document.getElementById('image-lightbox').classList.remove('hidden');
+        lucide.createIcons();
+    }
+    function closeImageLightbox() {
+        document.getElementById('image-lightbox').classList.add('hidden');
+    }
+    function lightboxNext() {
+        _pdLightboxIdx = (_pdLightboxIdx + 1) % _pdGallery.length;
+        document.getElementById('lightbox-img').src = _pdGallery[_pdLightboxIdx];
+        document.getElementById('lightbox-counter').textContent = `${_pdLightboxIdx + 1} / ${_pdGallery.length}`;
+    }
+    function lightboxPrev() {
+        _pdLightboxIdx = (_pdLightboxIdx - 1 + _pdGallery.length) % _pdGallery.length;
+        document.getElementById('lightbox-img').src = _pdGallery[_pdLightboxIdx];
+        document.getElementById('lightbox-counter').textContent = `${_pdLightboxIdx + 1} / ${_pdGallery.length}`;
+    }
+    // Keyboard support for lightbox
+    document.addEventListener('keydown', e => {
+        const lb = document.getElementById('image-lightbox');
+        if (!lb || lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape')      closeImageLightbox();
+        else if (e.key === 'ArrowRight') lightboxNext();
+        else if (e.key === 'ArrowLeft')  lightboxPrev();
+    });
+
 
     function renderProperties() {
         const c = document.getElementById('properties-container');
