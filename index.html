@@ -1894,30 +1894,22 @@
         <div class="nav-logo" onclick="showView('home')">
             <!--
               ════════════════════════════════════════════════
-              BUILD WISE LOGOMARK — Exact reference image match
+              BUILD WISE LOGOMARK
               ════════════════════════════════════════════════
-              B (left): 2 horizontal pills (capsule shapes, rounded both ends)
-                ① Top pill    : y=22, h=12
-                ② Bottom pill : y=66, h=12
-
-              W (right): 3 vertical pills (rounded both ends)
-                ③ Bar left  : TALL (y=22, h=56)
-                ④ Bar middle: SHORT (y=42, h=36)
-                ⑤ Bar right : TALL (y=22, h=56)
-
-              Frame: dark rounded square (rx=22)
+              B (left, 2 D-shape pieces): flat LEFT, curved RIGHT
+              W (right, 3 vertical pills): TALL-SHORT-TALL
               ════════════════════════════════════════════════
             -->
             <svg width="46" height="46" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <!-- Frame: dark rounded square -->
                 <rect x="3" y="3" width="94" height="94" rx="22" fill="#30261D"/>
 
-                <!-- B: top D-shape (centered) -->
+                <!-- B: top D-shape (flat LEFT, curved RIGHT) -->
                 <path d="M9 30 L28 30 A7 7 0 0 1 28 44 L9 44 Z" fill="#BD8F3F"/>
-                <!-- B: bottom D-shape (centered) -->
+                <!-- B: bottom D-shape (flat LEFT, curved RIGHT) -->
                 <path d="M9 56 L28 56 A7 7 0 0 1 28 70 L9 70 Z" fill="#BD8F3F"/>
 
-                <!-- W: 3 vertical pills (centered) -->
+                <!-- W: 3 vertical pills (centered) — thickness 14 -->
                 <rect x="41" y="30" width="14" height="40" rx="7" fill="#BD8F3F"/>
                 <rect x="59" y="44" width="14" height="26" rx="7" fill="#BD8F3F"/>
                 <rect x="77" y="30" width="14" height="40" rx="7" fill="#BD8F3F"/>
@@ -2118,6 +2110,13 @@
                     <button id="tab-تاون-هاوس" class="filter-btn"         onclick="filterProjects('تاون-هاوس')">🏠 تاون هاوس <span class="filter-count" id="cnt-تاون-هاوس"></span></button>
                     <button id="tab-أرض"        class="filter-btn"         onclick="filterProjects('أرض')">🌍 أرض <span class="filter-count" id="cnt-أرض"></span></button>
                     <button id="tab-فندقية"     class="filter-btn"         onclick="filterProjects('فندقية')">🏨 وحدة فندقية <span class="filter-count" id="cnt-فندقية"></span></button>
+                </div>
+            </div>
+
+            <!-- Region filter (same style, secondary) -->
+            <div class="filter-tabs region-tabs reveal" style="margin-top:14px">
+                <div class="filter-inner" id="region-filter-inner">
+                    <!-- buttons populated by JS -->
                 </div>
             </div>
 
@@ -2346,9 +2345,31 @@
 ═══════════════════════════════════════════ -->
 <footer style="background:var(--bw-dark); color:rgba(255,255,255,0.6); padding:0; overflow:hidden; position:relative;">
 
-    <!-- BW Brand Pattern strip -->
-    <div style="background:var(--bw-dark-2); padding:10px 2rem; overflow:hidden; border-bottom:1px solid rgba(189,143,63,0.15); position:relative;">
-        <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; color:rgba(189,143,63,0.25); letter-spacing:2px; white-space:nowrap; overflow:hidden; user-select:none;">
+    <!-- BW Brand Pattern strip — miniature logos matching the brand mark -->
+    <div style="background:var(--bw-dark-2); padding:10px 0; overflow:hidden; border-bottom:1px solid rgba(189,143,63,0.15); position:relative;">
+        <svg width="100%" height="40" preserveAspectRatio="xMidYMid slice" style="display:block;opacity:0.4" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!--
+                    Each tile = 1 mini logo with EXACT same proportions as navbar logo.
+                    Navbar logo: 100×100 viewBox. Scaled 2.5× down → mini logo 40×40 within a 56×40 tile (16 units spacing between tiles).
+                    All thickness values divided by 2.5:  navbar 14 → mini 5.6 ≈ 5.6
+                -->
+                <pattern id="bw-pattern" x="0" y="0" width="56" height="40" patternUnits="userSpaceOnUse">
+                    <!-- B: 2 D-shapes (flat LEFT, curved RIGHT) — scaled from navbar (rx=7 → rx=2.8, h=14 → h=5.6) -->
+                    <path d="M3.6 12 L11.2 12 A2.8 2.8 0 0 1 11.2 17.6 L3.6 17.6 Z" fill="#BD8F3F"/>
+                    <path d="M3.6 22.4 L11.2 22.4 A2.8 2.8 0 0 1 11.2 28 L3.6 28 Z" fill="#BD8F3F"/>
+                    <!-- W: 3 vertical pills — thickness 5.6 (matching B), rx=2.8 -->
+                    <rect x="16.4" y="12"   width="5.6" height="16" rx="2.8" fill="#BD8F3F"/>
+                    <rect x="23.6" y="17.6" width="5.6" height="10.4" rx="2.8" fill="#BD8F3F"/>
+                    <rect x="30.8" y="12"   width="5.6" height="16" rx="2.8" fill="#BD8F3F"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#bw-pattern)"/>
+        </svg>
+    </div>
+    <!-- old text strip remnant -->
+    <div style="display:none">
+        <div>
             BıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıooBıoo
         </div>
     </div>
@@ -2360,11 +2381,11 @@
                 <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="2" width="96" height="96" rx="22"
                           fill="#BD8F3F" stroke="#30261D" stroke-width="4"/>
-                    <!-- B: top D-shape (centered) -->
+                    <!-- B: top D-shape (flat LEFT, curved RIGHT) -->
                     <path d="M9 30 L28 30 A7 7 0 0 1 28 44 L9 44 Z" fill="#30261D"/>
-                    <!-- B: bottom D-shape (centered) -->
+                    <!-- B: bottom D-shape (flat LEFT, curved RIGHT) -->
                     <path d="M9 56 L28 56 A7 7 0 0 1 28 70 L9 70 Z" fill="#30261D"/>
-                    <!-- W: 3 vertical pills (centered) -->
+                    <!-- W: 3 vertical pills -->
                     <rect x="41" y="30" width="14" height="40" rx="7" fill="#30261D"/>
                     <rect x="59" y="44" width="14" height="26" rx="7" fill="#30261D"/>
                     <rect x="77" y="30" width="14" height="40" rx="7" fill="#30261D"/>
@@ -2514,6 +2535,15 @@
                     </div>
                 </div>
 
+                <!-- Description (only shown if provided) -->
+                <div id="pd-description-section" style="background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(48,38,29,0.08);margin-bottom:24px;display:none">
+                    <h3 style="font-size:15px;font-weight:900;color:var(--bw-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px">
+                        <i data-lucide="file-text" style="width:16px;height:16px;color:var(--bw-clay)"></i>
+                        وصف المشروع
+                    </h3>
+                    <p id="pd-description-text" style="font-size:14px;color:var(--bw-dark);font-weight:600;line-height:1.8;white-space:pre-wrap"></p>
+                </div>
+
                 <!-- Description / Features -->
                 <div style="background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(48,38,29,0.08);margin-bottom:24px">
                     <h3 style="font-size:15px;font-weight:900;color:var(--bw-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px">
@@ -2603,6 +2633,22 @@
                     تحليلاتي المحفوظة
                 </h3>
                 <div id="user-analyses-content"></div>
+            </div>
+
+            <!-- My Messages Card -->
+            <div id="user-messages-card" style="background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(48,38,29,0.06);margin-top:14px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+                    <h3 style="font-size:16px;font-weight:900;color:var(--bw-dark);display:flex;align-items:center;gap:8px;margin:0">
+                        <i data-lucide="messages-square" style="width:18px;height:18px;color:var(--bw-clay)"></i>
+                        رسائلي مع فريق تأصيل
+                        <span id="user-msg-unread-badge" style="display:none;background:#DC2626;color:#fff;font-family:Poppins;font-size:11px;font-weight:900;padding:2px 8px;border-radius:10px;margin-right:6px"></span>
+                    </h3>
+                    <button onclick="closeUserDashboard(); toggleContactModal();" style="font-family:Tajawal;font-size:12px;font-weight:800;color:#fff;background:var(--bw-clay);border:none;border-radius:8px;padding:7px 14px;cursor:pointer;display:flex;align-items:center;gap:5px">
+                        <i data-lucide="plus" style="width:12px;height:12px"></i>
+                        رسالة جديدة
+                    </button>
+                </div>
+                <div id="user-messages-content"></div>
             </div>
         </div>
 
@@ -2820,6 +2866,11 @@
             <button class="admin-tab" data-tab="developers" onclick="adminSwitchTab('developers')" style="font-family:Tajawal;background:none;border:none;padding:16px 22px;cursor:pointer;font-size:13px;font-weight:800;color:var(--slate);border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:8px">
                 <i data-lucide="briefcase" style="width:14px;height:14px"></i>
                 تحليل المطورين العقاريين
+            </button>
+            <button class="admin-tab" data-tab="messages" onclick="adminSwitchTab('messages')" style="font-family:Tajawal;background:none;border:none;padding:16px 22px;cursor:pointer;font-size:13px;font-weight:800;color:var(--slate);border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:8px;position:relative">
+                <i data-lucide="message-square" style="width:14px;height:14px"></i>
+                رسائل العملاء
+                <span id="admin-msg-badge" style="display:none;background:#DC2626;color:#fff;font-family:Poppins;font-size:10px;font-weight:900;padding:2px 6px;border-radius:10px;min-width:18px;text-align:center">0</span>
             </button>
         </div>
 
@@ -3104,6 +3155,214 @@
                 </div>
             </div>
 
+            <!-- ═════ TAB 5: MESSAGES ═════ -->
+            <div class="admin-pane" id="admin-pane-messages" style="display:none">
+                <!-- KPIs -->
+                <div id="admin-messages-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px"></div>
+
+                <!-- Filter bar -->
+                <div style="background:linear-gradient(135deg, #1F1812, #30261D);border-radius:14px;padding:16px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid var(--bw-gold)">
+                    <div style="display:flex;align-items:center;gap:8px;color:#fff;min-width:120px">
+                        <i data-lucide="filter" style="width:16px;height:16px;color:var(--bw-gold-lt)"></i>
+                        <span style="font-size:13px;font-weight:900">عرض:</span>
+                    </div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;flex:1" id="admin-msg-filter-chips"></div>
+                    <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px 12px;min-width:240px">
+                        <i data-lucide="search" style="width:14px;height:14px;color:rgba(255,255,255,0.6)"></i>
+                        <input id="admin-msg-search" type="text" placeholder="بحث في الاسم، الجوال، أو الموضوع..." oninput="renderAdminMessages()" style="background:transparent;border:none;color:#fff;font-family:Tajawal;font-size:12px;outline:none;flex:1;font-weight:600" />
+                    </div>
+                </div>
+
+                <!-- Messages table -->
+                <div style="background:#fff;border-radius:14px;padding:0;border:1px solid rgba(48,38,29,0.06);overflow:hidden">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(48,38,29,0.06)">
+                        <h4 style="font-size:14px;font-weight:900;color:var(--bw-dark);display:flex;align-items:center;gap:8px;margin:0">
+                            <i data-lucide="inbox" style="width:16px;height:16px;color:var(--bw-clay)"></i>
+                            صندوق رسائل العملاء
+                        </h4>
+                        <div id="admin-msg-count" style="font-size:11px;color:var(--slate);font-weight:700"></div>
+                    </div>
+                    <div style="overflow-x:auto">
+                        <table class="pl-table" style="font-size:12px;min-width:900px;margin:0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">#</th>
+                                    <th style="text-align:center">الحالة</th>
+                                    <th style="text-align:right">العميل</th>
+                                    <th style="text-align:center">الجوال</th>
+                                    <th style="text-align:right">الموضوع</th>
+                                    <th style="text-align:right">معاينة الرسالة</th>
+                                    <th style="text-align:center">التاريخ</th>
+                                    <th style="text-align:center">إجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-messages-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     MODAL: ADMIN MESSAGE VIEW + REPLY
+═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     MODAL: USER MESSAGE VIEW (with reply thread)
+═══════════════════════════════════════════ -->
+<div id="user-msg-view-modal" class="modal-overlay hidden" style="z-index:202">
+    <div class="modal-box" style="max-width:640px;width:100%;max-height:92vh;padding:0;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;padding:20px 28px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--bw-gold);flex-shrink:0">
+            <div style="width:46px;height:46px;border-radius:12px;background:rgba(189,143,63,0.18);display:flex;align-items:center;justify-content:center;color:var(--bw-gold-lt);border:1px solid var(--bw-gold);flex-shrink:0">
+                <i data-lucide="mail" style="width:20px;height:20px"></i>
+            </div>
+            <div style="flex:1;min-width:0">
+                <div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--bw-gold-lt);text-transform:uppercase">محادثتي مع فريق تأصيل</div>
+                <div id="umv-subject" style="font-size:16px;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+            </div>
+            <button onclick="closeUserMsgView()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0">
+                <i data-lucide="x" style="width:14px;height:14px"></i>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:22px 28px;background:var(--bw-sand)">
+            <!-- Status row -->
+            <div id="umv-status-row" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:11px;color:var(--slate);font-weight:700"></div>
+
+            <!-- Original message (from user) -->
+            <div style="background:#fff;border:1px solid rgba(48,38,29,0.08);border-right:4px solid var(--bw-clay);border-radius:12px;padding:14px 16px;margin-bottom:14px">
+                <div style="font-size:10px;font-weight:800;color:var(--bw-clay);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:5px">
+                    <i data-lucide="user" style="width:11px;height:11px"></i>
+                    رسالتك  <span id="umv-msg-date" style="opacity:0.6;font-family:Poppins;font-weight:600"></span>
+                </div>
+                <p id="umv-message" style="font-size:14px;color:var(--bw-dark);font-weight:600;line-height:1.85;white-space:pre-wrap;margin:0">—</p>
+            </div>
+
+            <!-- Reply from admin (if exists) -->
+            <div id="umv-reply-wrap" style="display:none;background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;border-radius:12px;padding:14px 16px;margin-bottom:14px;border:1px solid var(--bw-gold)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                    <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg, var(--bw-gold), var(--bw-clay));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i data-lucide="reply" style="width:14px;height:14px;color:#fff"></i>
+                    </div>
+                    <div style="flex:1">
+                        <div style="font-size:10px;font-weight:800;color:var(--bw-gold-lt);text-transform:uppercase;letter-spacing:1px">رد فريق تأصيل</div>
+                        <div id="umv-reply-date" style="font-size:11px;color:rgba(255,255,255,0.5);font-family:Poppins;font-weight:600"></div>
+                    </div>
+                </div>
+                <p id="umv-reply" style="font-size:14px;color:#fff;font-weight:500;line-height:1.85;white-space:pre-wrap;margin:0">—</p>
+            </div>
+
+            <!-- Waiting state (if no reply) -->
+            <div id="umv-waiting" style="display:none;background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.4);border-radius:12px;padding:16px;text-align:center;color:#78350F;font-size:13px;font-weight:700">
+                <i data-lucide="clock" style="width:18px;height:18px;display:inline-block;vertical-align:middle;margin-left:6px"></i>
+                رسالتك قيد المراجعة من فريق تأصيل وسنرد عليك في أقرب وقت
+            </div>
+
+            <!-- Closed state -->
+            <div id="umv-closed" style="display:none;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:12px 16px;margin-top:12px;text-align:center;color:#065F46;font-size:12px;font-weight:700">
+                <i data-lucide="check-circle" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:5px"></i>
+                تم إغلاق هذه المحادثة من قِبل فريق تأصيل
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background:#fff;border-top:1px solid rgba(48,38,29,0.08);padding:14px 28px;flex-shrink:0">
+            <button onclick="closeUserMsgView()" style="width:100%;font-family:Tajawal;font-size:13px;font-weight:800;color:var(--bw-dark);background:var(--bw-sand-2);border:none;border-radius:10px;padding:11px;cursor:pointer">إغلاق</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     MODAL: ADMIN MESSAGE VIEW + REPLY
+═══════════════════════════════════════════ -->
+<div id="admin-msg-view-modal" class="modal-overlay hidden" style="z-index:202">
+    <div class="modal-box" style="max-width:680px;width:100%;max-height:92vh;padding:0;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg, #1F1812, #30261D);color:#fff;padding:20px 28px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--bw-gold);flex-shrink:0">
+            <div style="width:46px;height:46px;border-radius:12px;background:rgba(189,143,63,0.18);display:flex;align-items:center;justify-content:center;color:var(--bw-gold-lt);border:1px solid var(--bw-gold);flex-shrink:0">
+                <i data-lucide="mail" style="width:20px;height:20px"></i>
+            </div>
+            <div style="flex:1;min-width:0">
+                <div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--bw-gold-lt);text-transform:uppercase">رسالة من عميل</div>
+                <div id="amv-subject" style="font-size:16px;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+            </div>
+            <button onclick="closeAdminMsgView()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0">
+                <i data-lucide="x" style="width:14px;height:14px"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable body -->
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:22px 28px">
+            <!-- Sender info -->
+            <div style="background:var(--bw-sand-2);border-radius:12px;padding:14px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div>
+                    <div style="font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase">الاسم</div>
+                    <div id="amv-name" style="font-size:13px;font-weight:900;color:var(--bw-dark);margin-top:2px">—</div>
+                </div>
+                <div>
+                    <div style="font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase">الجوال</div>
+                    <div id="amv-phone" style="font-size:13px;font-weight:900;color:var(--bw-dark);margin-top:2px;font-family:Poppins;direction:ltr">—</div>
+                </div>
+                <div>
+                    <div style="font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase">البريد</div>
+                    <div id="amv-email" style="font-size:13px;font-weight:900;color:var(--bw-dark);margin-top:2px;direction:ltr">—</div>
+                </div>
+                <div>
+                    <div style="font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase">التاريخ</div>
+                    <div id="amv-date" style="font-size:13px;font-weight:900;color:var(--bw-dark);margin-top:2px;font-family:Poppins">—</div>
+                </div>
+            </div>
+
+            <!-- Message body -->
+            <div style="background:#fff;border:1px solid rgba(48,38,29,0.08);border-right:4px solid var(--bw-clay);border-radius:12px;padding:16px;margin-bottom:18px">
+                <div style="font-size:10px;font-weight:800;color:var(--bw-clay);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+                    <i data-lucide="message-square" style="width:12px;height:12px"></i>
+                    نص الرسالة
+                </div>
+                <p id="amv-message" style="font-size:14px;color:var(--bw-dark);font-weight:600;line-height:1.85;white-space:pre-wrap;margin:0">—</p>
+            </div>
+
+            <!-- Previous admin reply (if exists) -->
+            <div id="amv-prev-reply-wrap" style="display:none;background:linear-gradient(to left, rgba(16,185,129,0.06), rgba(16,185,129,0.02));border:1px solid rgba(16,185,129,0.3);border-right:4px solid #10B981;border-radius:12px;padding:16px;margin-bottom:18px">
+                <div style="font-size:10px;font-weight:800;color:#065F46;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+                    <i data-lucide="reply" style="width:12px;height:12px"></i>
+                    ردك السابق <span id="amv-prev-reply-date" style="opacity:0.7;font-family:Poppins"></span>
+                </div>
+                <p id="amv-prev-reply" style="font-size:14px;color:#065F46;font-weight:600;line-height:1.85;white-space:pre-wrap;margin:0">—</p>
+            </div>
+
+            <!-- Reply form -->
+            <div style="background:linear-gradient(135deg, rgba(189,143,63,0.06), rgba(140,59,25,0.03));border:1px solid rgba(189,143,63,0.25);border-radius:12px;padding:16px">
+                <div style="font-size:12px;font-weight:900;color:var(--bw-clay);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+                    <i data-lucide="send" style="width:14px;height:14px"></i>
+                    <span id="amv-reply-title">الرد على الرسالة</span>
+                </div>
+                <textarea id="amv-reply-text" class="form-input" rows="5" placeholder="اكتب ردك هنا — سيظهر للعميل في حسابه الشخصي..." style="resize:vertical;font-family:Tajawal;font-size:13px;line-height:1.7"></textarea>
+                <div id="amv-msg" style="display:none;padding:9px 12px;border-radius:8px;font-size:12px;font-weight:700;margin-top:10px"></div>
+            </div>
+        </div>
+
+        <!-- Footer actions (fixed) -->
+        <div style="background:#fff;border-top:1px solid rgba(48,38,29,0.08);padding:14px 28px;display:flex;gap:8px;flex-shrink:0">
+            <button onclick="sendAdminReply()" class="btn-submit" style="flex:1;background:var(--bw-clay);margin:0">
+                <i data-lucide="send" style="width:15px;height:15px"></i>
+                <span id="amv-send-btn-text">إرسال الرد</span>
+            </button>
+            <button onclick="adminMarkClosed()" style="font-family:Tajawal;font-size:13px;font-weight:800;color:#fff;background:#10B981;border:none;border-radius:10px;padding:0 16px;cursor:pointer;display:flex;align-items:center;gap:6px">
+                <i data-lucide="check-circle" style="width:14px;height:14px"></i>
+                إغلاق المحادثة
+            </button>
+            <button onclick="adminDeleteMessage()" style="font-family:Tajawal;font-size:13px;font-weight:800;color:#DC2626;background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:0 14px;cursor:pointer;display:flex;align-items:center;gap:6px">
+                <i data-lucide="trash-2" style="width:13px;height:13px"></i>
+                حذف
+            </button>
+            <button onclick="closeAdminMsgView()" style="font-family:Tajawal;font-size:13px;font-weight:800;color:var(--slate);background:var(--bw-sand-2);border:none;border-radius:10px;padding:0 18px;cursor:pointer">إغلاق</button>
         </div>
     </div>
 </div>
@@ -3628,12 +3887,16 @@
             <div class="ir-side">
                 <div class="ir-side-logo">
                     <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="2" width="96" height="96" rx="22" fill="#BD8F3F" stroke="#30261D" stroke-width="4"/>
-                        <rect x="12" y="22" width="30" height="10" rx="5" fill="#30261D"/>
-                        <rect x="12" y="68" width="30" height="10" rx="5" fill="#30261D"/>
-                        <rect x="54" y="22" width="10" height="56" rx="5" fill="#30261D"/>
-                        <rect x="68" y="42" width="10" height="36" rx="5" fill="#30261D"/>
-                        <rect x="82" y="22" width="10" height="56" rx="5" fill="#30261D"/>
+                        <rect x="2" y="2" width="96" height="96" rx="22"
+                              fill="#BD8F3F" stroke="#30261D" stroke-width="4"/>
+                        <!-- B: top D-shape (flat LEFT, curved RIGHT) -->
+                        <path d="M9 30 L28 30 A7 7 0 0 1 28 44 L9 44 Z" fill="#30261D"/>
+                        <!-- B: bottom D-shape (flat LEFT, curved RIGHT) -->
+                        <path d="M9 56 L28 56 A7 7 0 0 1 28 70 L9 70 Z" fill="#30261D"/>
+                        <!-- W: 3 vertical pills -->
+                        <rect x="41" y="30" width="14" height="40" rx="7" fill="#30261D"/>
+                        <rect x="59" y="44" width="14" height="26" rx="7" fill="#30261D"/>
+                        <rect x="77" y="30" width="14" height="40" rx="7" fill="#30261D"/>
                     </svg>
                 </div>
                 <div class="ir-side-title">ابدأ رحلتك نحو التملك</div>
@@ -4065,54 +4328,370 @@
 <!-- ═══════════════════════════════════════════
      MODAL: FAQ
 ═══════════════════════════════════════════ -->
-<div id="faq-modal" class="modal-overlay hidden">
-    <div class="modal-box faq-modal-box">
-        <div class="modal-header">
-            <span class="modal-title">الأسئلة الشائعة</span>
-            <button class="modal-close" onclick="toggleFaqModal()">
-                <i data-lucide="x" style="width:16px;height:16px"></i>
-            </button>
+<!-- ═══════════════════════════════════════════
+     MODAL: FAQ — Premium Design
+═══════════════════════════════════════════ -->
+<div id="faq-modal" class="modal-overlay hidden" style="padding:0;align-items:stretch;justify-content:stretch">
+    <div class="modal-box faq-modal-pro" style="max-width:100%;width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;border-radius:0;padding:0;display:flex;flex-direction:column;overflow:hidden;background:var(--bw-sand)">
+
+        <!-- ─── Premium Header ─── -->
+        <div style="position:relative;background:linear-gradient(135deg, #1F1812 0%, #30261D 60%, #3D2F22 100%);color:#fff;padding:0;overflow:hidden;flex-shrink:0">
+            <!-- Decorative background pattern -->
+            <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="position:absolute;top:0;left:0;opacity:0.06;pointer-events:none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="faq-bg-pattern" x="0" y="0" width="56" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M3.6 12 L11.2 12 A2.8 2.8 0 0 1 11.2 17.6 L3.6 17.6 Z" fill="#BD8F3F"/>
+                        <path d="M3.6 22.4 L11.2 22.4 A2.8 2.8 0 0 1 11.2 28 L3.6 28 Z" fill="#BD8F3F"/>
+                        <rect x="16.4" y="12"   width="5.6" height="16" rx="2.8" fill="#BD8F3F"/>
+                        <rect x="23.6" y="17.6" width="5.6" height="10.4" rx="2.8" fill="#BD8F3F"/>
+                        <rect x="30.8" y="12"   width="5.6" height="16" rx="2.8" fill="#BD8F3F"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#faq-bg-pattern)"/>
+            </svg>
+
+            <!-- Glow circle decoration -->
+            <div style="position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle, rgba(189,143,63,0.18) 0%, transparent 70%);border-radius:50%;pointer-events:none"></div>
+
+            <div style="position:relative;max-width:980px;margin:0 auto;padding:36px 32px 30px;display:flex;align-items:center;gap:24px">
+                <!-- Big icon -->
+                <div style="width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg, var(--bw-gold), var(--bw-clay));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 12px 32px rgba(189,143,63,0.4)">
+                    <i data-lucide="help-circle" style="width:36px;height:36px;color:#fff" stroke-width="2.2"></i>
+                </div>
+
+                <div style="flex:1;min-width:0">
+                    <div style="font-size:11px;font-weight:800;letter-spacing:3px;color:var(--bw-gold-lt);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+                        <span style="width:24px;height:1px;background:var(--bw-gold-lt);display:inline-block"></span>
+                        مركز المساعدة
+                    </div>
+                    <h2 style="font-size:28px;font-weight:900;color:#fff;margin-bottom:6px;line-height:1.2">الأسئلة الشائعة</h2>
+                    <p style="font-size:14px;color:rgba(255,255,255,0.65);font-weight:600;line-height:1.6">إجابات شاملة على أهم التساؤلات حول منتج تأصيل ومنظومة الاستثمار العقاري</p>
+                </div>
+
+                <button onclick="toggleFaqModal()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:42px;height:42px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;transition:all 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
+                    <i data-lucide="x" style="width:18px;height:18px"></i>
+                </button>
+            </div>
+
+            <!-- Stats bar -->
+            <div style="position:relative;background:rgba(0,0,0,0.25);border-top:1px solid rgba(189,143,63,0.12);padding:14px 32px">
+                <div style="max-width:980px;margin:0 auto;display:flex;justify-content:space-around;gap:20px;flex-wrap:wrap">
+                    <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700">
+                        <div style="width:32px;height:32px;border-radius:8px;background:rgba(189,143,63,0.18);display:flex;align-items:center;justify-content:center;color:var(--bw-gold-lt);border:1px solid rgba(189,143,63,0.3)">
+                            <i data-lucide="file-question" style="width:14px;height:14px"></i>
+                        </div>
+                        <span><strong style="font-family:Poppins;color:var(--bw-gold-lt);font-size:15px">4</strong> أسئلة شائعة</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700">
+                        <div style="width:32px;height:32px;border-radius:8px;background:rgba(16,185,129,0.18);display:flex;align-items:center;justify-content:center;color:#10B981;border:1px solid rgba(16,185,129,0.3)">
+                            <i data-lucide="shield-check" style="width:14px;height:14px"></i>
+                        </div>
+                        <span>إجابات موثَّقة ومُحدّثة</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700">
+                        <div style="width:32px;height:32px;border-radius:8px;background:rgba(140,59,25,0.25);display:flex;align-items:center;justify-content:center;color:#FCA877;border:1px solid rgba(140,59,25,0.4)">
+                            <i data-lucide="headphones" style="width:14px;height:14px"></i>
+                        </div>
+                        <span>دعم متاح 24/7</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <div class="faq-item">
-                <details open>
-                    <summary class="faq-summary">
-                        هل منتج تأصيل يعتبر تمويلاً أو قرضاً؟
-                        <i data-lucide="chevron-down" class="arrow" style="width:18px;height:18px"></i>
-                    </summary>
-                    <p class="faq-answer">لا، تأصيل ليس تمويلاً ولا يترتب عليه أي التزامات مسجلة في "سمة". هو عبارة عن برنامج ادخار استثماري يعتمد على الاستقطاع المباشر من المبيعات لغرض تملك عقار حقيقي خالي تماماً من الفوائد البنكية.</p>
-                </details>
-            </div>
-            <div class="faq-item">
-                <details>
-                    <summary class="faq-summary">
-                        كيف يتم استقطاع المبالغ اليومية؟
-                        <i data-lucide="chevron-down" class="arrow" style="width:18px;height:18px"></i>
-                    </summary>
-                    <p class="faq-answer">من خلال ربط تقني سلس مع مزودي أجهزة نقاط البيع (POS) وتطبيقات التوصيل الخاصة بمنشأتك، يتم تحديد نسبة مئوية تُستقطع آلياً من مبيعاتك اليومية وتحول مباشرة لحساب ضمان المشروع.</p>
-                </details>
-            </div>
-            <div class="faq-item">
-                <details>
-                    <summary class="faq-summary">
-                        هل أموالي في أمان ومضمونة قانونياً؟
-                        <i data-lucide="chevron-down" class="arrow" style="width:18px;height:18px"></i>
-                    </summary>
-                    <p class="faq-answer">بالتأكيد. جميع العقود موثقة رسمياً والمشاريع الاستثمارية تكون تحت مظلة نظام "وافي"، مما يعني أن المبالغ المستقطعة تُودع في حساب ضمان بنكي لا يُصرف منه إلا بإشراف هندسي وقانوني صارم.</p>
-                </details>
-            </div>
-            <div class="faq-item">
-                <details>
-                    <summary class="faq-summary">
-                        ماذا يحدث إذا انخفضت مبيعاتي في بعض الأشهر؟
-                        <i data-lucide="chevron-down" class="arrow" style="width:18px;height:18px"></i>
-                    </summary>
-                    <p class="faq-answer">تم تصميم المنظومة لتراعي طبيعة الأعمال وتقلبات المبيعات الموسمية. يتم تحديد مبلغ الاستقطاع بما يتناسب مع قدرة منشأتك التشغيلية منذ البداية. وفي حال حدوث انخفاض مؤقت، يمكن إعادة جدولة الاستقطاع أو تعديل خطة السداد بما يحافظ على استقرار التدفق النقدي.</p>
-                </details>
+
+        <!-- ─── Body ─── -->
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:40px 0">
+            <div style="max-width:880px;margin:0 auto;padding:0 32px">
+
+                <!-- Category chips -->
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px;flex-wrap:wrap">
+                    <span style="font-size:11px;font-weight:900;color:var(--slate);text-transform:uppercase;letter-spacing:2px">المواضيع:</span>
+                    <span style="background:linear-gradient(135deg, var(--bw-clay), #6B2D13);color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:100px;box-shadow:0 4px 12px rgba(140,59,25,0.2)">⚖️ الطبيعة القانونية</span>
+                    <span style="background:rgba(189,143,63,0.12);color:var(--bw-clay);font-size:11px;font-weight:800;padding:5px 12px;border-radius:100px;border:1px solid rgba(189,143,63,0.3)">💼 آلية العمل</span>
+                    <span style="background:rgba(189,143,63,0.12);color:var(--bw-clay);font-size:11px;font-weight:800;padding:5px 12px;border-radius:100px;border:1px solid rgba(189,143,63,0.3)">🔒 الأمان والضمانات</span>
+                    <span style="background:rgba(189,143,63,0.12);color:var(--bw-clay);font-size:11px;font-weight:800;padding:5px 12px;border-radius:100px;border:1px solid rgba(189,143,63,0.3)">📊 المرونة المالية</span>
+                </div>
+
+                <!-- FAQ items -->
+                <div class="faq-pro-list">
+                    <!-- Q1 -->
+                    <div class="faq-pro-item">
+                        <details open onclick="setTimeout(()=>{ if(window.lucide) lucide.createIcons(); }, 50)">
+                            <summary>
+                                <div class="faq-pro-num">
+                                    <span>01</span>
+                                </div>
+                                <div class="faq-pro-q">
+                                    <div class="faq-pro-tag">⚖️ الطبيعة القانونية</div>
+                                    <h3>هل منتج تأصيل يعتبر تمويلاً أو قرضاً؟</h3>
+                                </div>
+                                <div class="faq-pro-toggle">
+                                    <i data-lucide="plus" class="ico-plus" style="width:18px;height:18px"></i>
+                                    <i data-lucide="minus" class="ico-minus" style="width:18px;height:18px"></i>
+                                </div>
+                            </summary>
+                            <div class="faq-pro-answer">
+                                <div class="faq-pro-answer-icon">
+                                    <i data-lucide="message-circle" style="width:14px;height:14px"></i>
+                                </div>
+                                <p>لا، تأصيل ليس تمويلاً ولا يترتب عليه أي التزامات مسجلة في "سمة". هو عبارة عن برنامج ادخار استثماري يعتمد على الاستقطاع المباشر من المبيعات لغرض تملك عقار حقيقي خالي تماماً من الفوائد البنكية.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="faq-pro-item">
+                        <details onclick="setTimeout(()=>{ if(window.lucide) lucide.createIcons(); }, 50)">
+                            <summary>
+                                <div class="faq-pro-num">
+                                    <span>02</span>
+                                </div>
+                                <div class="faq-pro-q">
+                                    <div class="faq-pro-tag">💼 آلية العمل</div>
+                                    <h3>كيف يتم استقطاع المبالغ اليومية؟</h3>
+                                </div>
+                                <div class="faq-pro-toggle">
+                                    <i data-lucide="plus" class="ico-plus" style="width:18px;height:18px"></i>
+                                    <i data-lucide="minus" class="ico-minus" style="width:18px;height:18px"></i>
+                                </div>
+                            </summary>
+                            <div class="faq-pro-answer">
+                                <div class="faq-pro-answer-icon">
+                                    <i data-lucide="message-circle" style="width:14px;height:14px"></i>
+                                </div>
+                                <p>من خلال ربط تقني سلس مع مزودي أجهزة نقاط البيع (POS) وتطبيقات التوصيل الخاصة بمنشأتك، يتم تحديد نسبة مئوية تُستقطع آلياً من مبيعاتك اليومية وتحول مباشرة لحساب ضمان المشروع.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="faq-pro-item">
+                        <details onclick="setTimeout(()=>{ if(window.lucide) lucide.createIcons(); }, 50)">
+                            <summary>
+                                <div class="faq-pro-num">
+                                    <span>03</span>
+                                </div>
+                                <div class="faq-pro-q">
+                                    <div class="faq-pro-tag">🔒 الأمان والضمانات</div>
+                                    <h3>هل أموالي في أمان ومضمونة قانونياً؟</h3>
+                                </div>
+                                <div class="faq-pro-toggle">
+                                    <i data-lucide="plus" class="ico-plus" style="width:18px;height:18px"></i>
+                                    <i data-lucide="minus" class="ico-minus" style="width:18px;height:18px"></i>
+                                </div>
+                            </summary>
+                            <div class="faq-pro-answer">
+                                <div class="faq-pro-answer-icon">
+                                    <i data-lucide="message-circle" style="width:14px;height:14px"></i>
+                                </div>
+                                <p>بالتأكيد. جميع العقود موثقة رسمياً والمشاريع الاستثمارية تكون تحت مظلة نظام "وافي"، مما يعني أن المبالغ المستقطعة تُودع في حساب ضمان بنكي لا يُصرف منه إلا بإشراف هندسي وقانوني صارم.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="faq-pro-item">
+                        <details onclick="setTimeout(()=>{ if(window.lucide) lucide.createIcons(); }, 50)">
+                            <summary>
+                                <div class="faq-pro-num">
+                                    <span>04</span>
+                                </div>
+                                <div class="faq-pro-q">
+                                    <div class="faq-pro-tag">📊 المرونة المالية</div>
+                                    <h3>ماذا يحدث إذا انخفضت مبيعاتي في بعض الأشهر؟</h3>
+                                </div>
+                                <div class="faq-pro-toggle">
+                                    <i data-lucide="plus" class="ico-plus" style="width:18px;height:18px"></i>
+                                    <i data-lucide="minus" class="ico-minus" style="width:18px;height:18px"></i>
+                                </div>
+                            </summary>
+                            <div class="faq-pro-answer">
+                                <div class="faq-pro-answer-icon">
+                                    <i data-lucide="message-circle" style="width:14px;height:14px"></i>
+                                </div>
+                                <p>تم تصميم المنظومة لتراعي طبيعة الأعمال وتقلبات المبيعات الموسمية. يتم تحديد مبلغ الاستقطاع بما يتناسب مع قدرة منشأتك التشغيلية منذ البداية. وفي حال حدوث انخفاض مؤقت، يمكن إعادة جدولة الاستقطاع أو تعديل خطة السداد بما يحافظ على استقرار التدفق النقدي.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- CTA section -->
+                <div style="margin-top:48px;background:linear-gradient(135deg, #fff 0%, var(--bw-sand-2) 100%);border:1px solid rgba(189,143,63,0.2);border-radius:18px;padding:32px;text-align:center;position:relative;overflow:hidden">
+                    <!-- decorative corner accent -->
+                    <div style="position:absolute;top:-40px;left:-40px;width:120px;height:120px;background:radial-gradient(circle, rgba(189,143,63,0.18) 0%, transparent 70%);border-radius:50%"></div>
+                    <div style="position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle, rgba(140,59,25,0.12) 0%, transparent 70%);border-radius:50%"></div>
+
+                    <div style="position:relative">
+                        <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg, var(--bw-gold), var(--bw-clay));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 24px rgba(189,143,63,0.3)">
+                            <i data-lucide="messages-square" style="width:28px;height:28px;color:#fff"></i>
+                        </div>
+                        <h3 style="font-size:18px;font-weight:900;color:var(--bw-dark);margin-bottom:6px">لم تجد إجابتك؟</h3>
+                        <p style="font-size:13px;color:var(--slate);font-weight:600;line-height:1.7;margin-bottom:18px;max-width:480px;margin-right:auto;margin-left:auto">
+                            فريقنا متاح للإجابة على أي تساؤلات إضافية ومساعدتك في خطوات التملك العقاري عبر تأصيل
+                        </p>
+                        <button onclick="toggleFaqModal(); setTimeout(toggleContactModal, 200)" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, var(--bw-clay), #6B2D13);color:#fff;border:none;border-radius:12px;padding:12px 24px;font-family:Tajawal;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(140,59,25,0.3);transition:transform 0.2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <i data-lucide="send" style="width:15px;height:15px"></i>
+                            تواصل مع الفريق
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* ═══════ Premium FAQ Styles ═══════ */
+    .faq-pro-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .faq-pro-item {
+        background: #fff;
+        border: 1.5px solid rgba(48,38,29,0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 2px 8px rgba(48,38,29,0.03);
+    }
+    .faq-pro-item:hover {
+        border-color: rgba(189,143,63,0.4);
+        box-shadow: 0 8px 24px rgba(48,38,29,0.08);
+        transform: translateY(-2px);
+    }
+    .faq-pro-item details[open] {
+        background: linear-gradient(135deg, #fff 0%, var(--bw-sand-2) 100%);
+    }
+    .faq-pro-item details[open] + .faq-pro-item,
+    .faq-pro-list .faq-pro-item:has(details[open]) {
+        border-color: var(--bw-gold);
+        box-shadow: 0 12px 32px rgba(189,143,63,0.15);
+    }
+    .faq-pro-item summary {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 24px;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+    }
+    .faq-pro-item summary::-webkit-details-marker { display: none; }
+    .faq-pro-num {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--bw-sand-2);
+        border: 1.5px solid rgba(189,143,63,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Poppins, sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--bw-clay);
+        transition: all 0.3s;
+    }
+    .faq-pro-item details[open] .faq-pro-num {
+        background: linear-gradient(135deg, var(--bw-gold), var(--bw-clay));
+        color: #fff;
+        border-color: var(--bw-gold);
+        box-shadow: 0 4px 12px rgba(189,143,63,0.3);
+    }
+    .faq-pro-q {
+        flex: 1;
+        min-width: 0;
+    }
+    .faq-pro-tag {
+        font-size: 10px;
+        font-weight: 900;
+        color: var(--bw-clay);
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        opacity: 0.75;
+    }
+    .faq-pro-q h3 {
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--bw-dark);
+        line-height: 1.5;
+        margin: 0;
+        font-family: Tajawal, sans-serif;
+    }
+    .faq-pro-toggle {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--bw-sand-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bw-clay);
+        transition: all 0.3s;
+        position: relative;
+    }
+    .faq-pro-toggle .ico-plus,
+    .faq-pro-toggle .ico-minus {
+        position: absolute;
+        transition: all 0.3s;
+    }
+    .faq-pro-toggle .ico-minus { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+    .faq-pro-item details[open] .faq-pro-toggle {
+        background: var(--bw-dark);
+        color: var(--bw-gold-lt);
+    }
+    .faq-pro-item details[open] .ico-plus { opacity: 0; transform: rotate(90deg) scale(0.5); }
+    .faq-pro-item details[open] .ico-minus { opacity: 1; transform: rotate(0deg) scale(1); }
+
+    .faq-pro-answer {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 0 24px 22px;
+        margin: 0 24px 0 80px;
+        padding-top: 18px;
+        border-top: 1px dashed rgba(189,143,63,0.25);
+        animation: faqSlide 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes faqSlide {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .faq-pro-answer-icon {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: rgba(189,143,63,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bw-clay);
+        margin-top: 2px;
+    }
+    .faq-pro-answer p {
+        font-size: 14px;
+        line-height: 1.85;
+        color: var(--bw-dark);
+        font-weight: 500;
+        margin: 0;
+        flex: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+        .faq-pro-item summary { padding: 16px 14px; gap: 12px; }
+        .faq-pro-num { width: 38px; height: 38px; font-size: 12px; }
+        .faq-pro-q h3 { font-size: 13.5px; }
+        .faq-pro-tag { font-size: 9px; }
+        .faq-pro-toggle { width: 30px; height: 30px; }
+        .faq-pro-answer { padding: 14px 14px 16px; margin: 0 14px 0 60px; }
+    }
+</style>
 
 
 <!-- ═══════════════════════════════════════════
@@ -4127,22 +4706,45 @@
             </button>
         </div>
         <div class="modal-body">
-            <form onsubmit="event.preventDefault(); alert('تم الإرسال بنجاح!'); toggleContactModal();" style="display:flex;flex-direction:column;gap:16px">
+            <p style="font-size:13px;color:var(--slate);font-weight:600;line-height:1.7;margin-bottom:14px">
+                اترك لنا رسالتك وسيقوم فريق تأصيل بالرد عليك في أقرب وقت ممكن. يمكنك متابعة حالة الرسالة والرد من حسابك الشخصي.
+            </p>
+            <form id="contact-form" onsubmit="event.preventDefault(); submitContactMessage();" style="display:flex;flex-direction:column;gap:14px">
                 <div class="contact-grid">
                     <div class="form-group">
                         <label class="form-label">الاسم</label>
-                        <input type="text" class="form-input" placeholder="الاسم الكامل" required />
+                        <input id="contact-name" type="text" class="form-input" placeholder="الاسم الكامل" required />
                     </div>
                     <div class="form-group">
                         <label class="form-label">الجوال</label>
-                        <input type="text" class="form-input" placeholder="+966 5X XXX XXXX" required />
+                        <input id="contact-phone" type="text" class="form-input" placeholder="5XXXXXXXX" required style="direction:ltr;text-align:right" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">رسالتك</label>
-                    <textarea class="form-input" rows="4" placeholder="اكتب رسالتك هنا..." style="resize:none"></textarea>
+                    <label class="form-label">البريد الإلكتروني (اختياري)</label>
+                    <input id="contact-email" type="email" class="form-input" placeholder="example@email.com" style="direction:ltr;text-align:right" />
                 </div>
-                <button type="submit" class="btn-submit">إرسال الرسالة</button>
+                <div class="form-group">
+                    <label class="form-label">موضوع الرسالة</label>
+                    <select id="contact-subject" class="form-select">
+                        <option value="استفسار عام">استفسار عام</option>
+                        <option value="استفسار عن منتج تأصيل">استفسار عن منتج تأصيل</option>
+                        <option value="استفسار عن مشروع محدد">استفسار عن مشروع محدد</option>
+                        <option value="آلية الاستقطاع والدفع">آلية الاستقطاع والدفع</option>
+                        <option value="شكوى">شكوى</option>
+                        <option value="اقتراح أو ملاحظة">اقتراح أو ملاحظة</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">رسالتك</label>
+                    <textarea id="contact-message" class="form-input" rows="4" placeholder="اكتب رسالتك هنا..." style="resize:vertical;font-family:Tajawal" required></textarea>
+                </div>
+                <div id="contact-msg" style="display:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700"></div>
+                <button type="submit" class="btn-submit">
+                    <i data-lucide="send" style="width:14px;height:14px"></i>
+                    إرسال الرسالة
+                </button>
             </form>
         </div>
     </div>
@@ -4162,52 +4764,73 @@
         </div>
         <div class="modal-body">
             <form id="add-property-form" style="display:flex;flex-direction:column;gap:16px">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">اسم المشروع</label>
-                        <input id="prop-title" type="text" class="form-input" required />
+                <!-- Basic Info -->
+                <div style="background:var(--bw-sand-2);border-radius:10px;padding:14px;border:1px solid rgba(189,143,63,0.15)">
+                    <div style="font-size:12px;font-weight:900;color:var(--bw-clay);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+                        <i data-lucide="info" style="width:14px;height:14px"></i>
+                        المعلومات الأساسية
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">الموقع</label>
-                        <input id="prop-location" type="text" class="form-input" required />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">القيمة الإجمالية (ر.س)</label>
-                        <input id="prop-price" type="text" class="form-input" required />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">المساحة</label>
-                        <input id="prop-area" type="text" class="form-input" placeholder="مثال: 150 م²" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">عدد الغرف</label>
-                        <input id="prop-rooms" type="text" class="form-input" placeholder="3 أو —" value="—" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">تصنيف المشروع</label>
-                        <select id="prop-category" class="form-select">
-                            <option value="شقة">شقة</option>
-                            <option value="دوبلكس">شقة دوبلكس</option>
-                            <option value="فيلا">فيلا</option>
-                            <option value="تاون-هاوس">تاون هاوس</option>
-                            <option value="أرض">أرض</option>
-                            <option value="فندقية">وحدة فندقية</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">حالة المشروع</label>
-                        <select id="prop-status" class="form-select">
-                            <option value="off-plan">البيع على الخارطة</option>
-                            <option value="ready">الوحدات الجاهزة</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="grid-column: span 2">
-                        <label class="form-label">اسم المطور العقاري</label>
-                        <input id="prop-developer" type="text" class="form-input" placeholder="مثال: شركة الراجحي العقارية" />
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">اسم المشروع</label>
+                            <input id="prop-title" type="text" class="form-input" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الموقع</label>
+                            <input id="prop-location" type="text" class="form-input" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">القيمة الإجمالية (ر.س)</label>
+                            <input id="prop-price" type="text" class="form-input" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">المساحة</label>
+                            <input id="prop-area" type="text" class="form-input" placeholder="مثال: 150 م²" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">عدد الغرف</label>
+                            <input id="prop-rooms" type="text" class="form-input" placeholder="3 أو —" value="—" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">تصنيف المشروع</label>
+                            <select id="prop-category" class="form-select" onchange="updateFeaturesByCategory()">
+                                <option value="شقة">شقة</option>
+                                <option value="دوبلكس">شقة دوبلكس</option>
+                                <option value="فيلا">فيلا</option>
+                                <option value="تاون-هاوس">تاون هاوس</option>
+                                <option value="أرض">أرض</option>
+                                <option value="فندقية">وحدة فندقية</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">حالة المشروع</label>
+                            <select id="prop-status" class="form-select">
+                                <option value="off-plan">البيع على الخارطة</option>
+                                <option value="ready">الوحدات الجاهزة</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2">
+                            <label class="form-label">اسم المطور العقاري</label>
+                            <input id="prop-developer" type="text" class="form-input" placeholder="مثال: شركة الراجحي العقارية" />
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">صورة المشروع</label>
+
+                <!-- Description -->
+                <div style="background:var(--bw-sand-2);border-radius:10px;padding:14px;border:1px solid rgba(189,143,63,0.15)">
+                    <div style="font-size:12px;font-weight:900;color:var(--bw-clay);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+                        <i data-lucide="file-text" style="width:14px;height:14px"></i>
+                        وصف المشروع (اختياري)
+                    </div>
+                    <textarea id="prop-description" rows="3" class="form-input" placeholder="وصف موجز عن المشروع، إطلالته، موقعه ومميزاته الفريدة..." style="resize:vertical;font-family:Tajawal"></textarea>
+                </div>
+
+                <!-- Main Image -->
+                <div style="background:var(--bw-sand-2);border-radius:10px;padding:14px;border:1px solid rgba(189,143,63,0.15)">
+                    <div style="font-size:12px;font-weight:900;color:var(--bw-clay);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+                        <i data-lucide="image" style="width:14px;height:14px"></i>
+                        الصورة الرئيسية
+                    </div>
                     <div class="drop-zone" id="drop-zone">
                         <input type="file" id="prop-image-file" accept="image/*" style="display:none" />
                         <i data-lucide="cloud-upload" style="width:36px;height:36px;display:block;margin:0 auto 10px"></i>
@@ -4215,6 +4838,40 @@
                         <span id="file-name">PNG, JPG حتى 5 ميجابايت</span>
                     </div>
                 </div>
+
+                <!-- Gallery Images -->
+                <div style="background:var(--bw-sand-2);border-radius:10px;padding:14px;border:1px solid rgba(189,143,63,0.15)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                        <div style="font-size:12px;font-weight:900;color:var(--bw-clay);display:flex;align-items:center;gap:6px">
+                            <i data-lucide="images" style="width:14px;height:14px"></i>
+                            صور المعرض الإضافية (اختياري)
+                        </div>
+                        <button type="button" onclick="document.getElementById('prop-gallery-files').click()" style="font-family:Tajawal;font-size:11px;font-weight:800;color:#fff;background:var(--bw-clay);border:none;border-radius:8px;padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:4px">
+                            <i data-lucide="plus" style="width:12px;height:12px"></i>
+                            إضافة صور
+                        </button>
+                    </div>
+                    <input type="file" id="prop-gallery-files" accept="image/*" multiple style="display:none" onchange="handleGalleryFiles(this)" />
+                    <p style="font-size:11px;color:var(--slate);font-weight:600;margin-bottom:10px">يمكنك إضافة حتى 4 صور إضافية. إذا تركت الحقل فارغاً، ستُستخدم صور افتراضية مناسبة لتصنيف المشروع.</p>
+                    <div id="prop-gallery-preview" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;min-height:80px;background:#fff;border-radius:8px;padding:10px;border:1px dashed rgba(48,38,29,0.15)"></div>
+                </div>
+
+                <!-- Features Selector -->
+                <div style="background:var(--bw-sand-2);border-radius:10px;padding:14px;border:1px solid rgba(189,143,63,0.15)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                        <div style="font-size:12px;font-weight:900;color:var(--bw-clay);display:flex;align-items:center;gap:6px">
+                            <i data-lucide="sparkles" style="width:14px;height:14px"></i>
+                            المزايا والخصائص (اختياري)
+                        </div>
+                        <button type="button" onclick="addCustomFeature()" style="font-family:Tajawal;font-size:11px;font-weight:800;color:var(--bw-clay);background:transparent;border:1px solid var(--bw-clay);border-radius:8px;padding:5px 10px;cursor:pointer;display:flex;align-items:center;gap:4px">
+                            <i data-lucide="plus" style="width:11px;height:11px"></i>
+                            ميزة مخصصة
+                        </button>
+                    </div>
+                    <p style="font-size:11px;color:var(--slate);font-weight:600;margin-bottom:10px">اختر المزايا التي تنطبق على المشروع. إذا تركت الكل غير محدد، ستُستخدم مزايا افتراضية حسب التصنيف.</p>
+                    <div id="prop-features-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px"></div>
+                </div>
+
                 <div class="modal-actions">
                     <button type="submit" class="btn-submit" style="flex:1">اعتماد المشروع</button>
                     <button type="button" onclick="toggleAdminModal()" class="btn-cancel">إلغاء</button>
@@ -4312,6 +4969,7 @@
     ];
 
     let currentFilter = 'شقة';
+    let currentRegionFilter = 'all';
 
     function filterProjects(category) {
         currentFilter = category;
@@ -4319,7 +4977,35 @@
             const btn = document.getElementById('tab-' + c);
             if (btn) btn.className = 'filter-btn' + (c === category ? ' active' : '');
         });
+        // Re-render region chips since available regions may change with category
+        renderRegionFilterChips();
         renderProperties();
+    }
+
+    function filterByRegion(region) {
+        currentRegionFilter = region;
+        renderRegionFilterChips();
+        renderProperties();
+    }
+
+    function renderRegionFilterChips() {
+        const wrap = document.getElementById('region-filter-inner');
+        if (!wrap) return;
+        // Get unique regions for the CURRENT category (so users only see relevant regions)
+        const byCat = properties.filter(p => p.category === currentFilter);
+        const regions = Array.from(new Set(byCat.map(p => _extractRegion(p.location)).filter(Boolean))).sort();
+
+        // Reset filter if currently active region no longer exists in this category
+        if (currentRegionFilter !== 'all' && !regions.includes(currentRegionFilter)) {
+            currentRegionFilter = 'all';
+        }
+
+        const allChip = `<button class="filter-btn${currentRegionFilter === 'all' ? ' active' : ''}" onclick="filterByRegion('all')">🗺 جميع المناطق <span class="filter-count">${byCat.length}</span></button>`;
+        const chips = regions.map(r => {
+            const count = byCat.filter(p => _extractRegion(p.location) === r).length;
+            return `<button class="filter-btn${currentRegionFilter === r ? ' active' : ''}" onclick="filterByRegion('${r.replace(/'/g, "\\'")}')">📍 ${r} <span class="filter-count">${count}</span></button>`;
+        }).join('');
+        wrap.innerHTML = allChip + chips;
     }
 
     function updateCounts() {
@@ -4423,12 +5109,19 @@
     };
 
     function _propGallery(prop) {
-        // Build gallery: main image + 4 category-based images
+        // Build gallery: main image + custom uploaded gallery OR fallback to category pool
         const pool = GALLERY_POOLS[prop.category] || GALLERY_POOLS['شقة'];
         const gallery = [prop.image];
+        // If custom gallery provided, use those next
+        if (Array.isArray(prop.gallery) && prop.gallery.length > 0) {
+            prop.gallery.forEach(url => {
+                if (url && gallery.length < 5 && url !== prop.image) gallery.push(url);
+            });
+        }
+        // Top up with category pool if still less than 5
         for (const url of pool) {
             if (gallery.length >= 5) break;
-            if (url !== prop.image) gallery.push(url);
+            if (url !== prop.image && !gallery.includes(url)) gallery.push(url);
         }
         while (gallery.length < 5) gallery.push(pool[gallery.length % pool.length]);
         return gallery;
@@ -4501,13 +5194,26 @@
             </div>
         `).join('');
 
-        // Features
-        const features = FEATURES_POOL[prop.category] || FEATURES_POOL['شقة'];
+        // Features — use custom features if defined, else fallback to category defaults
+        const features = (Array.isArray(prop.features) && prop.features.length > 0)
+            ? prop.features
+            : (FEATURES_POOL[prop.category] || FEATURES_POOL['شقة']);
         document.getElementById('pd-features').innerHTML = features.map(f => `
             <div style="background:var(--bw-sand-2);padding:12px 14px;border-radius:10px;font-size:13px;font-weight:800;color:var(--bw-dark);display:flex;align-items:center;gap:8px">
                 <span>${f}</span>
             </div>
         `).join('');
+
+        // Description (show only if defined)
+        const descSection = document.getElementById('pd-description-section');
+        if (descSection) {
+            if (prop.description && prop.description.trim()) {
+                descSection.style.display = '';
+                document.getElementById('pd-description-text').textContent = prop.description;
+            } else {
+                descSection.style.display = 'none';
+            }
+        }
 
         document.getElementById('property-details-modal').classList.remove('hidden');
         lucide.createIcons();
@@ -4559,7 +5265,11 @@
         const c = document.getElementById('properties-container');
         if (!c) return;
 
-        const byCat   = properties.filter(p => p.category === currentFilter);
+        // Apply BOTH category and region filters
+        let byCat = properties.filter(p => p.category === currentFilter);
+        if (currentRegionFilter !== 'all') {
+            byCat = byCat.filter(p => _extractRegion(p.location) === currentRegionFilter);
+        }
         const offPlan = byCat.filter(p => p.status === 'off-plan');
         const ready   = byCat.filter(p => p.status === 'ready');
         const total   = byCat.length;
@@ -4568,6 +5278,21 @@
         if (totalEl) totalEl.textContent = total;
 
         let html = '';
+
+        // ── Empty state ──
+        if (total === 0) {
+            const regionTxt = currentRegionFilter !== 'all' ? ` في منطقة <strong>${currentRegionFilter}</strong>` : '';
+            html = `
+            <div style="text-align:center;padding:60px 20px;background:var(--bw-sand-2);border-radius:16px;border:2px dashed rgba(189,143,63,0.3)">
+                <div style="font-size:48px;margin-bottom:14px">📭</div>
+                <h3 style="font-size:16px;font-weight:900;color:var(--bw-dark);margin-bottom:6px">لا توجد مشاريع مطابقة</h3>
+                <p style="font-size:13px;color:var(--slate);font-weight:600;margin-bottom:18px">لا توجد وحدات من نوع <strong>${currentFilter}</strong>${regionTxt} حالياً</p>
+                ${currentRegionFilter !== 'all' ? `<button onclick="filterByRegion('all')" style="font-family:Tajawal;font-size:12px;font-weight:900;color:#fff;background:var(--bw-clay);border:none;border-radius:10px;padding:9px 18px;cursor:pointer">🗺 عرض جميع المناطق</button>` : ''}
+            </div>`;
+            c.innerHTML = html;
+            lucide.createIcons();
+            return;
+        }
 
         // ── Section: البيع على الخارطة ──
         if (offPlan.length) {
@@ -4653,6 +5378,9 @@
         if (window._pendingAction === 'openInterestModal') {
             window._pendingAction = null;
             setTimeout(() => openInterestModal(), 200);
+        } else if (window._pendingAction === 'openContactModal') {
+            window._pendingAction = null;
+            setTimeout(() => toggleContactModal(), 200);
         } else if (pendingCalcPropId !== null && !hasFilledInterest()) {
             // User logged in but hasn't filled interest yet — prompt that next
             setTimeout(() => showCalcLockModal('interest'), 300);
@@ -4696,6 +5424,9 @@
         if (window._pendingAction === 'openInterestModal') {
             window._pendingAction = null;
             setTimeout(() => openInterestModal(), 600);
+        } else if (window._pendingAction === 'openContactModal') {
+            window._pendingAction = null;
+            setTimeout(() => toggleContactModal(), 600);
         } else if (pendingCalcPropId !== null) {
             // After signup, prompt to fill interest before calc
             setTimeout(() => showCalcLockModal('interest'), 600);
@@ -4720,11 +5451,506 @@
     }
 
     function toggleFaqModal() {
-        document.getElementById('faq-modal').classList.toggle('hidden');
+        const modal = document.getElementById('faq-modal');
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden')) {
+            // Refresh lucide icons each time we open (handles plus/minus toggles and decorative icons)
+            setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 30);
+        }
     }
     function toggleContactModal() {
-        document.getElementById('contact-modal').classList.toggle('hidden');
+        const modal = document.getElementById('contact-modal');
+        const isOpening = modal.classList.contains('hidden');
+
+        // ─── LOGIN GATE: must be logged in to open the contact form ───
+        if (isOpening && !isUserLoggedIn()) {
+            // Stash a pending action so the modal opens automatically after login
+            window._pendingAction = 'openContactModal';
+            openLoginModal();
+            return;
+        }
+
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden')) {
+            // Prefill from logged-in user
+            const user = getCurrentUser();
+            if (user) {
+                const n = document.getElementById('contact-name');
+                const p = document.getElementById('contact-phone');
+                const e = document.getElementById('contact-email');
+                if (n && !n.value) n.value = user.full_name || '';
+                if (p && !p.value) p.value = user.phone || '';
+                if (e && !e.value) e.value = user.email || '';
+            }
+            // Reset message text and error state
+            const msg = document.getElementById('contact-msg');
+            if (msg) msg.style.display = 'none';
+            lucide.createIcons();
+        }
     }
+
+    // ═══════════════════════════════════════════
+    // MESSAGE SYSTEM (contact messages + admin replies)
+    // ═══════════════════════════════════════════
+    const MSG_STORE = 'taaseelMessages';
+
+    function getAllMessages() {
+        try {
+            const raw = localStorage.getItem(MSG_STORE);
+            return raw ? JSON.parse(raw) : [];
+        } catch(e) { return []; }
+    }
+    function saveAllMessages(arr) {
+        try { localStorage.setItem(MSG_STORE, JSON.stringify(arr)); } catch(e) {}
+    }
+    function _msgId() {
+        return 'm_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    }
+    function _fmtMsgDate(ts) {
+        if (!ts) return '';
+        try {
+            const d = new Date(ts);
+            const pad = n => String(n).padStart(2, '0');
+            return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+        } catch(e) { return ''; }
+    }
+
+    function submitContactMessage() {
+        const name    = document.getElementById('contact-name').value.trim();
+        const phone   = document.getElementById('contact-phone').value.trim();
+        const email   = document.getElementById('contact-email').value.trim();
+        const subject = document.getElementById('contact-subject').value;
+        const message = document.getElementById('contact-message').value.trim();
+        const msgEl   = document.getElementById('contact-msg');
+
+        const showMsg = (type, text) => {
+            msgEl.style.display = 'block';
+            if (type === 'error') {
+                msgEl.style.background = '#FEF2F2';
+                msgEl.style.border = '1px solid #FCA5A5';
+                msgEl.style.color = '#7F1D1D';
+            } else {
+                msgEl.style.background = '#D1FAE5';
+                msgEl.style.border = '1px solid #6EE7B7';
+                msgEl.style.color = '#065F46';
+            }
+            msgEl.textContent = text;
+        };
+
+        if (!name)    return showMsg('error', '⚠️ الرجاء إدخال الاسم');
+        if (!phone || phone.length < 9) return showMsg('error', '⚠️ رقم الجوال غير صحيح');
+        if (!message) return showMsg('error', '⚠️ الرجاء كتابة الرسالة');
+
+        const user = getCurrentUser();
+        const newMsg = {
+            id: _msgId(),
+            user_id: user ? user.id : null,
+            name: name,
+            phone: phone,
+            email: email,
+            subject: subject,
+            message: message,
+            created_at: Date.now(),
+            status: 'new', // 'new', 'read', 'replied', 'closed'
+            reply: null,
+            reply_at: null,
+            user_seen_reply: false
+        };
+
+        const all = getAllMessages();
+        all.unshift(newMsg);
+        saveAllMessages(all);
+
+        showMsg('success', '✅ تم إرسال رسالتك بنجاح. يمكنك متابعتها من حسابك الشخصي.');
+        // Clear form
+        document.getElementById('contact-message').value = '';
+        document.getElementById('contact-subject').value = 'استفسار عام';
+
+        // Update admin badge in case admin is logged in
+        updateAdminMsgBadge();
+
+        // Close modal after a moment
+        setTimeout(() => {
+            toggleContactModal();
+            // Clear the success message after closing so it doesn't appear next open
+            msgEl.style.display = 'none';
+        }, 1800);
+    }
+
+    // ─── Admin: Messages tab ───
+    window._adminMsgFilter = 'all';
+    window._adminMsgViewId = null;
+
+    function adminSetMsgFilter(f) {
+        window._adminMsgFilter = f;
+        renderAdminMessages();
+    }
+
+    function renderAdminMessages() {
+        const all = getAllMessages();
+        // Filter chips
+        const chipsBox = document.getElementById('admin-msg-filter-chips');
+        if (chipsBox) {
+            const counts = {
+                all: all.length,
+                new: all.filter(m => m.status === 'new').length,
+                read: all.filter(m => m.status === 'read').length,
+                replied: all.filter(m => m.status === 'replied').length,
+                closed: all.filter(m => m.status === 'closed').length,
+            };
+            const filters = [
+                { key: 'all',     label: 'الكل',         icon: '📋', color: 'var(--bw-gold)' },
+                { key: 'new',     label: 'جديدة',         icon: '🆕', color: '#DC2626' },
+                { key: 'read',    label: 'مقروءة',       icon: '👁',  color: '#3B82F6' },
+                { key: 'replied', label: 'تم الرد',       icon: '✉',  color: '#10B981' },
+                { key: 'closed',  label: 'مغلقة',         icon: '✅', color: '#6B7280' },
+            ];
+            const filter = window._adminMsgFilter || 'all';
+            chipsBox.innerHTML = filters.map(f => {
+                const isActive = filter === f.key;
+                return `<button onclick="adminSetMsgFilter('${f.key}')" style="
+                    font-family:Tajawal;font-size:12px;font-weight:800;
+                    background:${isActive ? f.color : 'rgba(255,255,255,0.08)'};
+                    color:${isActive ? '#fff' : '#fff'};
+                    border:1px solid ${isActive ? f.color : 'rgba(255,255,255,0.15)'};
+                    border-radius:8px;padding:6px 12px;cursor:pointer;
+                    display:inline-flex;align-items:center;gap:5px;transition:all 0.2s">
+                    <span>${f.icon}</span>${f.label}
+                    <span style="font-family:Poppins;font-weight:900;${isActive ? 'opacity:0.9' : 'opacity:0.7'}">(${counts[f.key]})</span>
+                </button>`;
+            }).join('');
+        }
+
+        // KPIs
+        const totalNew     = all.filter(m => m.status === 'new').length;
+        const totalReplied = all.filter(m => m.status === 'replied').length;
+        const totalClosed  = all.filter(m => m.status === 'closed').length;
+        const todayCount   = all.filter(m => {
+            const d = new Date(m.created_at);
+            const now = new Date();
+            return d.toDateString() === now.toDateString();
+        }).length;
+
+        const kpisEl = document.getElementById('admin-messages-kpis');
+        if (kpisEl) {
+            const kpis = [
+                { label: 'إجمالي الرسائل', value: all.length,    icon: 'inbox',       color: 'var(--bw-clay)', bg: 'rgba(140,59,25,0.08)' },
+                { label: 'جديدة',           value: totalNew,      icon: 'bell',        color: '#DC2626',         bg: '#FEF2F2' },
+                { label: 'تم الرد',         value: totalReplied,  icon: 'check',       color: '#10B981',         bg: '#D1FAE5' },
+                { label: 'رسائل اليوم',     value: todayCount,    icon: 'calendar',    color: '#3B82F6',         bg: '#DBEAFE' },
+            ];
+            kpisEl.innerHTML = kpis.map(k => `
+                <div style="background:#fff;border-radius:14px;padding:18px 20px;border:1px solid rgba(48,38,29,0.06)">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                        <div style="width:36px;height:36px;border-radius:10px;background:${k.bg};display:flex;align-items:center;justify-content:center;color:${k.color}">
+                            <i data-lucide="${k.icon}" style="width:16px;height:16px"></i>
+                        </div>
+                        <div style="font-size:11px;font-weight:800;color:var(--slate);letter-spacing:0.5px">${k.label}</div>
+                    </div>
+                    <div style="font-family:Poppins;font-size:26px;font-weight:900;color:${k.color}">${k.value}</div>
+                </div>
+            `).join('');
+        }
+
+        // Apply filter + search
+        const filter = window._adminMsgFilter || 'all';
+        const searchEl = document.getElementById('admin-msg-search');
+        const search = searchEl ? searchEl.value.trim().toLowerCase() : '';
+        let filtered = filter === 'all' ? all.slice() : all.filter(m => m.status === filter);
+        if (search) {
+            filtered = filtered.filter(m =>
+                (m.name && m.name.toLowerCase().includes(search)) ||
+                (m.phone && m.phone.toLowerCase().includes(search)) ||
+                (m.subject && m.subject.toLowerCase().includes(search)) ||
+                (m.message && m.message.toLowerCase().includes(search))
+            );
+        }
+
+        // Count label
+        const countEl = document.getElementById('admin-msg-count');
+        if (countEl) countEl.textContent = `${filtered.length} من إجمالي ${all.length} رسالة`;
+
+        // Table
+        const tb = document.getElementById('admin-messages-tbody');
+        if (filtered.length === 0) {
+            tb.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px 20px;color:var(--slate)"><div style="font-size:36px;margin-bottom:10px">📭</div><div style="font-weight:700">— لا توجد رسائل مطابقة —</div></td></tr>';
+            lucide.createIcons();
+            return;
+        }
+
+        const statusMeta = {
+            new:     { label: 'جديدة',   color: '#DC2626', bg: '#FEF2F2', icon: 'bell' },
+            read:    { label: 'مقروءة', color: '#3B82F6', bg: '#DBEAFE', icon: 'eye' },
+            replied: { label: 'تم الرد', color: '#10B981', bg: '#D1FAE5', icon: 'check' },
+            closed:  { label: 'مغلقة',   color: '#6B7280', bg: '#F3F4F6', icon: 'check-circle' },
+        };
+
+        tb.innerHTML = filtered.map((m, i) => {
+            const st = statusMeta[m.status] || statusMeta.new;
+            const preview = m.message.length > 60 ? m.message.slice(0, 60) + '...' : m.message;
+            const isNew = m.status === 'new';
+            return `<tr style="${isNew ? 'background:rgba(220,38,38,0.025)' : ''}">
+                <td style="text-align:center;font-weight:900;color:var(--bw-clay)">${i+1}</td>
+                <td style="text-align:center">
+                    <span style="display:inline-flex;align-items:center;gap:4px;background:${st.bg};color:${st.color};padding:3px 9px;border-radius:6px;font-weight:900;font-size:10px">
+                        ${st.label}
+                    </span>
+                </td>
+                <td style="text-align:right;font-weight:${isNew ? '900' : '700'};color:var(--bw-dark)">${m.name}</td>
+                <td style="text-align:center;font-family:Poppins;font-weight:700;direction:ltr">+966 ${m.phone}</td>
+                <td style="text-align:right;font-size:11px;font-weight:800;color:var(--bw-clay)">${m.subject}</td>
+                <td style="text-align:right;font-size:11px;color:var(--slate);font-weight:600;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${m.message.replace(/"/g,'&quot;')}">${preview}</td>
+                <td style="text-align:center;font-family:Poppins;font-size:10px;color:var(--slate);font-weight:700;white-space:nowrap">${_fmtMsgDate(m.created_at)}</td>
+                <td style="text-align:center">
+                    <button onclick="openAdminMsgView('${m.id}')" style="font-family:Tajawal;font-size:11px;font-weight:800;color:#fff;background:var(--bw-clay);border:none;border-radius:6px;padding:5px 10px;cursor:pointer">
+                        ${m.status === 'replied' || m.status === 'closed' ? 'عرض' : 'الرد'}
+                    </button>
+                </td>
+            </tr>`;
+        }).join('');
+        lucide.createIcons();
+    }
+
+    function openAdminMsgView(msgId) {
+        const all = getAllMessages();
+        const m = all.find(x => x.id === msgId);
+        if (!m) return;
+        window._adminMsgViewId = msgId;
+
+        // Mark as read (only if currently new)
+        if (m.status === 'new') {
+            m.status = 'read';
+            saveAllMessages(all);
+            updateAdminMsgBadge();
+        }
+
+        document.getElementById('amv-subject').textContent = m.subject || 'رسالة';
+        document.getElementById('amv-name').textContent    = m.name;
+        document.getElementById('amv-phone').textContent   = '+966 ' + m.phone;
+        document.getElementById('amv-email').textContent   = m.email || '—';
+        document.getElementById('amv-date').textContent    = _fmtMsgDate(m.created_at);
+        document.getElementById('amv-message').textContent = m.message;
+
+        // Previous reply
+        const prevWrap = document.getElementById('amv-prev-reply-wrap');
+        if (m.reply) {
+            prevWrap.style.display = '';
+            document.getElementById('amv-prev-reply').textContent      = m.reply;
+            document.getElementById('amv-prev-reply-date').textContent = '— ' + _fmtMsgDate(m.reply_at);
+            document.getElementById('amv-reply-title').textContent     = 'تعديل/إضافة رد';
+            document.getElementById('amv-send-btn-text').textContent   = 'تحديث الرد';
+            document.getElementById('amv-reply-text').value            = '';
+            document.getElementById('amv-reply-text').placeholder      = 'اكتب رداً جديداً ليحلّ محل الرد السابق...';
+        } else {
+            prevWrap.style.display = 'none';
+            document.getElementById('amv-reply-title').textContent   = 'الرد على الرسالة';
+            document.getElementById('amv-send-btn-text').textContent = 'إرسال الرد';
+            document.getElementById('amv-reply-text').value          = '';
+            document.getElementById('amv-reply-text').placeholder    = 'اكتب ردك هنا — سيظهر للعميل في حسابه الشخصي...';
+        }
+
+        document.getElementById('amv-msg').style.display = 'none';
+        document.getElementById('admin-msg-view-modal').classList.remove('hidden');
+        lucide.createIcons();
+        renderAdminMessages(); // refresh table to update status
+    }
+
+    function closeAdminMsgView() {
+        document.getElementById('admin-msg-view-modal').classList.add('hidden');
+        window._adminMsgViewId = null;
+    }
+
+    function sendAdminReply() {
+        const id = window._adminMsgViewId;
+        if (!id) return;
+        const replyText = document.getElementById('amv-reply-text').value.trim();
+        const msgEl = document.getElementById('amv-msg');
+
+        const showMsg = (type, text) => {
+            msgEl.style.display = 'block';
+            if (type === 'error') {
+                msgEl.style.background = '#FEF2F2';
+                msgEl.style.border = '1px solid #FCA5A5';
+                msgEl.style.color = '#7F1D1D';
+            } else {
+                msgEl.style.background = '#D1FAE5';
+                msgEl.style.border = '1px solid #6EE7B7';
+                msgEl.style.color = '#065F46';
+            }
+            msgEl.textContent = text;
+        };
+
+        if (!replyText) return showMsg('error', '⚠️ الرجاء كتابة نص الرد');
+
+        const all = getAllMessages();
+        const m = all.find(x => x.id === id);
+        if (!m) return;
+        m.reply = replyText;
+        m.reply_at = Date.now();
+        m.status = 'replied';
+        m.user_seen_reply = false;
+        saveAllMessages(all);
+
+        showMsg('success', '✅ تم إرسال الرد للعميل بنجاح');
+        setTimeout(() => {
+            closeAdminMsgView();
+            renderAdminMessages();
+            updateAdminMsgBadge();
+        }, 900);
+    }
+
+    function adminMarkClosed() {
+        const id = window._adminMsgViewId;
+        if (!id) return;
+        const all = getAllMessages();
+        const m = all.find(x => x.id === id);
+        if (!m) return;
+        m.status = 'closed';
+        saveAllMessages(all);
+        closeAdminMsgView();
+        renderAdminMessages();
+        updateAdminMsgBadge();
+    }
+
+    function adminDeleteMessage() {
+        const id = window._adminMsgViewId;
+        if (!id) return;
+        if (!confirm('هل أنت متأكد من حذف هذه الرسالة نهائياً؟')) return;
+        const all = getAllMessages().filter(x => x.id !== id);
+        saveAllMessages(all);
+        closeAdminMsgView();
+        renderAdminMessages();
+        updateAdminMsgBadge();
+    }
+
+    function updateAdminMsgBadge() {
+        const newCount = getAllMessages().filter(m => m.status === 'new').length;
+        const badge = document.getElementById('admin-msg-badge');
+        if (!badge) return;
+        if (newCount > 0) {
+            badge.style.display = '';
+            badge.textContent = newCount;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    // ─── User: My Messages section ───
+    function _getUserMessages(user) {
+        if (!user) return [];
+        const all = getAllMessages();
+        return all.filter(m => m.user_id === user.id || (m.phone && m.phone === user.phone));
+    }
+
+    function renderUserMessages() {
+        const user = getCurrentUser();
+        if (!user) return;
+        const mine = _getUserMessages(user);
+        const wrap = document.getElementById('user-messages-content');
+        const badge = document.getElementById('user-msg-unread-badge');
+        if (!wrap) return;
+
+        // Unread badge (replies user hasn't seen yet)
+        const unread = mine.filter(m => m.reply && !m.user_seen_reply).length;
+        if (unread > 0 && badge) {
+            badge.style.display = '';
+            badge.textContent = unread + ' رد جديد';
+        } else if (badge) {
+            badge.style.display = 'none';
+        }
+
+        if (mine.length === 0) {
+            wrap.innerHTML = `
+                <div style="text-align:center;padding:30px 20px;color:var(--slate)">
+                    <div style="font-size:36px;margin-bottom:10px">💬</div>
+                    <div style="font-size:13px;font-weight:700">لم تُرسل أي رسالة بعد</div>
+                    <div style="font-size:12px;font-weight:600;margin-top:4px;color:var(--bw-clay)">اضغط "رسالة جديدة" للتواصل مع الفريق</div>
+                </div>`;
+            return;
+        }
+
+        const statusBadge = m => {
+            if (m.status === 'closed') return '<span style="background:#F3F4F6;color:#6B7280;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900">✅ مغلقة</span>';
+            if (m.reply)               return '<span style="background:#D1FAE5;color:#065F46;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900">✉ تم الرد</span>';
+            return '<span style="background:#FEF3C7;color:#78350F;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900">⏳ قيد المراجعة</span>';
+        };
+
+        wrap.innerHTML = mine.map(m => {
+            const isUnread = m.reply && !m.user_seen_reply;
+            const preview = m.message.length > 90 ? m.message.slice(0, 90) + '...' : m.message;
+            return `
+                <div onclick="openUserMsgView('${m.id}')" style="background:${isUnread ? 'linear-gradient(to left, rgba(189,143,63,0.08), rgba(189,143,63,0.02))' : 'var(--bw-sand-2)'};border:1px solid ${isUnread ? 'var(--bw-gold)' : 'rgba(48,38,29,0.06)'};border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;position:relative" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
+                    ${isUnread ? '<div style="position:absolute;top:10px;left:10px;width:9px;height:9px;background:#DC2626;border-radius:50%;box-shadow:0 0 0 3px rgba(220,38,38,0.2)"></div>' : ''}
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+                        <div style="font-size:13px;font-weight:900;color:var(--bw-clay);display:flex;align-items:center;gap:6px">
+                            <i data-lucide="tag" style="width:12px;height:12px"></i>
+                            ${m.subject}
+                        </div>
+                        ${statusBadge(m)}
+                    </div>
+                    <p style="font-size:12px;color:var(--bw-dark);font-weight:600;line-height:1.6;margin:6px 0">${preview}</p>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+                        <div style="font-family:Poppins;font-size:10px;color:var(--slate);font-weight:700">📅 ${_fmtMsgDate(m.created_at)}</div>
+                        <div style="font-size:11px;font-weight:800;color:var(--bw-clay);display:flex;align-items:center;gap:3px">
+                            ${isUnread ? 'عرض الرد الجديد' : 'عرض التفاصيل'}
+                            <i data-lucide="chevron-left" style="width:12px;height:12px"></i>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+        lucide.createIcons();
+    }
+
+    function openUserMsgView(id) {
+        const user = getCurrentUser();
+        if (!user) return;
+        const all = getAllMessages();
+        const m = all.find(x => x.id === id);
+        if (!m) return;
+
+        // Mark reply as seen
+        if (m.reply && !m.user_seen_reply) {
+            m.user_seen_reply = true;
+            saveAllMessages(all);
+        }
+
+        document.getElementById('umv-subject').textContent = m.subject || 'رسالة';
+        document.getElementById('umv-message').textContent = m.message;
+        document.getElementById('umv-msg-date').textContent = _fmtMsgDate(m.created_at);
+
+        // Status row (status only, no ID)
+        const statusText = m.status === 'closed' ? '✅ محادثة مغلقة'
+            : m.reply ? '✉ تم الرد عليك' : '⏳ بانتظار الرد';
+        document.getElementById('umv-status-row').innerHTML = `
+            <div></div>
+            <div style="font-weight:800;color:var(--bw-clay)">${statusText}</div>
+        `;
+
+        const replyWrap = document.getElementById('umv-reply-wrap');
+        const waitingEl = document.getElementById('umv-waiting');
+        const closedEl  = document.getElementById('umv-closed');
+
+        if (m.reply) {
+            replyWrap.style.display = '';
+            document.getElementById('umv-reply').textContent      = m.reply;
+            document.getElementById('umv-reply-date').textContent = _fmtMsgDate(m.reply_at);
+            waitingEl.style.display = 'none';
+        } else {
+            replyWrap.style.display = 'none';
+            waitingEl.style.display = '';
+        }
+        closedEl.style.display = m.status === 'closed' ? '' : 'none';
+
+        document.getElementById('user-msg-view-modal').classList.remove('hidden');
+        lucide.createIcons();
+        // Refresh dashboard list (badge updates)
+        renderUserMessages();
+    }
+
+    function closeUserMsgView() {
+        document.getElementById('user-msg-view-modal').classList.add('hidden');
+    }
+
     let uploadedImageData = null;
     function toggleAdminModal() {
         document.getElementById('modal-overlay').classList.toggle('hidden');
@@ -4758,6 +5984,94 @@
     const openAdminBtn = document.getElementById('open-modal-btn');
     if (openAdminBtn) openAdminBtn.addEventListener('click', toggleAdminModal);
 
+    // ─── Custom Gallery / Features state (admin form) ───
+    let _uploadedGalleryImages = []; // array of dataURLs
+    let _selectedFeatures = []; // array of feature strings
+
+    function handleGalleryFiles(input) {
+        const files = Array.from(input.files || []);
+        const maxAllowed = 4;
+        const remaining = Math.max(0, maxAllowed - _uploadedGalleryImages.length);
+        const toAdd = files.slice(0, remaining);
+        let pending = toAdd.length;
+        if (pending === 0) {
+            if (files.length > 0) alert('الحد الأقصى ' + maxAllowed + ' صور إضافية');
+            input.value = '';
+            return;
+        }
+        toAdd.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = e => {
+                _uploadedGalleryImages.push(e.target.result);
+                pending--;
+                if (pending === 0) {
+                    renderGalleryPreview();
+                    input.value = '';
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+    function renderGalleryPreview() {
+        const wrap = document.getElementById('prop-gallery-preview');
+        if (!wrap) return;
+        if (_uploadedGalleryImages.length === 0) {
+            wrap.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--slate);font-size:11px;font-weight:700;padding:20px">لم تُضف صور بعد — سيتم استخدام صور افتراضية حسب التصنيف</div>';
+            return;
+        }
+        wrap.innerHTML = _uploadedGalleryImages.map((url, i) => `
+            <div style="position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#000">
+                <img src="${url}" style="width:100%;height:100%;object-fit:cover;display:block" alt="gallery${i}"/>
+                <button type="button" onclick="removeGalleryImage(${i})" style="position:absolute;top:4px;right:4px;background:#DC2626;color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;line-height:1">×</button>
+            </div>
+        `).join('');
+    }
+    function removeGalleryImage(idx) {
+        _uploadedGalleryImages.splice(idx, 1);
+        renderGalleryPreview();
+    }
+
+    function renderFeaturesGrid(category, preSelected) {
+        const wrap = document.getElementById('prop-features-grid');
+        if (!wrap) return;
+        const features = (FEATURES_POOL && FEATURES_POOL[category]) || FEATURES_POOL['شقة'];
+        // Combine default features + any custom ones already selected
+        const all = Array.from(new Set([...features, ...(_selectedFeatures || [])]));
+        if (preSelected && Array.isArray(preSelected)) {
+            preSelected.forEach(f => { if (!all.includes(f)) all.push(f); });
+        }
+        wrap.innerHTML = all.map(f => {
+            const isSelected = _selectedFeatures.includes(f);
+            return `<label style="display:flex;align-items:center;gap:6px;padding:8px 10px;background:${isSelected ? 'rgba(189,143,63,0.18)' : '#fff'};border:1.5px solid ${isSelected ? 'var(--bw-gold)' : 'rgba(48,38,29,0.08)'};border-radius:8px;font-size:12px;font-weight:800;color:var(--bw-dark);cursor:pointer;transition:all 0.2s">
+                <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleFeature('${f.replace(/'/g, "\\'")}', this.checked)" style="margin:0;cursor:pointer;accent-color:var(--bw-clay)"/>
+                <span>${f}</span>
+            </label>`;
+        }).join('');
+    }
+    function toggleFeature(feature, selected) {
+        if (selected) {
+            if (!_selectedFeatures.includes(feature)) _selectedFeatures.push(feature);
+        } else {
+            _selectedFeatures = _selectedFeatures.filter(f => f !== feature);
+        }
+    }
+    function updateFeaturesByCategory() {
+        const cat = document.getElementById('prop-category').value;
+        renderFeaturesGrid(cat);
+    }
+    function addCustomFeature() {
+        const txt = prompt('أدخل الميزة (يفضل أن تبدأ بإيموجي):\nمثال: 🌊 إطلالة بحرية');
+        if (!txt || !txt.trim()) return;
+        const v = txt.trim();
+        if (_selectedFeatures.includes(v)) {
+            alert('هذه الميزة موجودة بالفعل');
+            return;
+        }
+        _selectedFeatures.push(v);
+        const cat = document.getElementById('prop-category').value;
+        renderFeaturesGrid(cat);
+    }
+
     document.getElementById('add-property-form').onsubmit = (e) => {
         e.preventDefault();
         const propData = {
@@ -4769,7 +6083,10 @@
             category: document.getElementById('prop-category').value,
             status: document.getElementById('prop-status') ? document.getElementById('prop-status').value : 'off-plan',
             developer: document.getElementById('prop-developer') ? document.getElementById('prop-developer').value : '',
-            image: uploadedImageData || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80'
+            description: document.getElementById('prop-description') ? document.getElementById('prop-description').value : '',
+            image: uploadedImageData || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+            gallery: _uploadedGalleryImages.slice(), // copy
+            features: _selectedFeatures.slice(),     // copy
         };
         // Edit mode?
         if (window._editingPropId) {
@@ -4778,6 +6095,14 @@
                 propData.id = window._editingPropId;
                 // Keep existing image if no new one uploaded
                 if (!uploadedImageData) propData.image = properties[idx].image;
+                // If no gallery added, keep existing
+                if (_uploadedGalleryImages.length === 0 && properties[idx].gallery) {
+                    propData.gallery = properties[idx].gallery;
+                }
+                // If no features picked, keep existing
+                if (_selectedFeatures.length === 0 && properties[idx].features) {
+                    propData.features = properties[idx].features;
+                }
                 properties[idx] = propData;
             }
             window._editingPropId = null;
@@ -4791,6 +6116,9 @@
         filterProjects(currentFilter);
         const statEl = document.getElementById('stat-total');
         if (statEl) statEl.textContent = '+' + properties.length;
+        // Reset state for next add
+        _uploadedGalleryImages = [];
+        _selectedFeatures = [];
         toggleAdminModal();
         // Refresh admin properties table if open
         if (!document.getElementById('admin-dashboard-modal').classList.contains('hidden')) {
@@ -4988,6 +6316,9 @@
                 </div>
             `).join('');
         }
+
+        // Render messages section
+        renderUserMessages();
 
         document.getElementById('user-dashboard-modal').classList.remove('hidden');
         lucide.createIcons();
@@ -5274,6 +6605,7 @@
         const users = getAllUsers();
         document.getElementById('admin-dash-stats').textContent = `إجمالي العملاء المسجَّلين: ${users.length}`;
         adminSwitchTab('customers'); // default to customers tab
+        updateAdminMsgBadge();
         document.getElementById('admin-dashboard-modal').classList.remove('hidden');
         lucide.createIcons();
     }
@@ -5295,6 +6627,7 @@
         if (tab === 'purchasing') { renderAdminPurchasing(); }
         if (tab === 'properties') { renderAdminPropsKPIs(); renderAdminProperties(); }
         if (tab === 'developers') { renderAdminDevelopers(); }
+        if (tab === 'messages')   { renderAdminMessages(); }
         lucide.createIcons();
     }
     function closeAdminDashboard() {
@@ -5736,7 +7069,7 @@
         window._editingPropId = null;
         document.querySelector('#modal-overlay .modal-title').textContent = 'إضافة مشروع جديد';
         // Clear form
-        ['prop-title', 'prop-location', 'prop-price', 'prop-area', 'prop-rooms', 'prop-developer'].forEach(id => {
+        ['prop-title', 'prop-location', 'prop-price', 'prop-area', 'prop-rooms', 'prop-developer', 'prop-description'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.value = id === 'prop-rooms' ? '—' : '';
         });
@@ -5744,7 +7077,13 @@
         const st = document.getElementById('prop-status'); if (st) st.value = 'off-plan';
         uploadedImageData = null;
         const fn = document.getElementById('file-name'); if (fn) fn.textContent = 'PNG, JPG حتى 5 ميجابايت';
+        // Reset gallery + features state
+        _uploadedGalleryImages = [];
+        _selectedFeatures = [];
+        renderGalleryPreview();
+        renderFeaturesGrid('شقة');
         document.getElementById('modal-overlay').classList.remove('hidden');
+        lucide.createIcons();
     }
     function adminEditProperty(propId) {
         const prop = properties.find(p => p.id === propId);
@@ -5759,9 +7098,16 @@
         document.getElementById('prop-category').value = prop.category || 'شقة';
         if (document.getElementById('prop-status')) document.getElementById('prop-status').value = prop.status || 'off-plan';
         if (document.getElementById('prop-developer')) document.getElementById('prop-developer').value = prop.developer || '';
+        if (document.getElementById('prop-description')) document.getElementById('prop-description').value = prop.description || '';
         uploadedImageData = null;
         const fn = document.getElementById('file-name'); if (fn) fn.textContent = 'الصورة الحالية محفوظة (اختر صورة جديدة للتغيير)';
+        // Load gallery + features from saved property
+        _uploadedGalleryImages = Array.isArray(prop.gallery) ? prop.gallery.slice() : [];
+        _selectedFeatures = Array.isArray(prop.features) ? prop.features.slice() : [];
+        renderGalleryPreview();
+        renderFeaturesGrid(prop.category || 'شقة');
         document.getElementById('modal-overlay').classList.remove('hidden');
+        lucide.createIcons();
     }
     function adminDeleteProperty(propId) {
         const prop = properties.find(p => p.id === propId);
